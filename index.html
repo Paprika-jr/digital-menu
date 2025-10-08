@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Digital Menu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 id="cafe-name">Café Viitasaari</h1>
+                    <p id="welcome-text">Welcome</p>
+                </div>
+                <div class="header-actions">
+                    <button id="lang-toggle" class="btn-icon">
+                        <i data-lucide="globe"></i>
+                        <span id="current-lang">EN</span>
+                    </button>
+                    <button id="cart-toggle" class="btn-icon btn-primary">
+                        <i data-lucide="shopping-cart"></i>
+                        <span id="cart-count" class="badge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- Menu sections will be dynamically generated here -->
+            <div id="menu-container"></div>
+        </div>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2 id="cart-title">Cart</h2>
+                <button id="close-cart" class="btn-icon">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="cart-items">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+
+            <div id="cart-empty" class="cart-empty">
+                <p>Your cart is empty</p>
+            </div>
+
+            <div id="cart-footer" class="cart-footer">
+                <div class="cart-total">
+                    <span id="total-label">Total:</span>
+                    <span id="total-price">€0.00</span>
+                </div>
+                <button id="place-order-btn" class="btn btn-primary btn-block">
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Form Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="order-form-title">Contact Information</h2>
+            <div class="form-group">
+                <input type="text" id="customer-name" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" id="customer-phone" placeholder="Phone" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="customer-email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <textarea id="order-notes" placeholder="Special requests" rows="3"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button id="cancel-order" class="btn btn-secondary">Cancel</button>
+                <button id="submit-order" class="btn btn-primary">Submit Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content success-content">
+            <div class="success-icon">
+                <i data-lucide="check-circle"></i>
+            </div>
+            <h3 id="success-message">Order sent successfully!</h3>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-modal" class="modal">
+        <div class="modal-content loading-content">
+            <div class="spinner"></div>
+            <p id="loading-text">Sending your order...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>+358 12 345 6789</span>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span>Viitasaari, Finland</span>
+                    </div>
+                </div>
+                <p class="powered-by">Powered by Witas.oy Digikeskus</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Backdrop -->
+    <div id="backdrop" class="backdrop"></div>
+
+    <!-- EmailJS Configuration -->
+    <script>
+        // ⚠️ IMPORTANT: Replace these with YOUR values from EmailJS dashboard
+        const EMAILJS_CONFIG = {
+            publicKey: '5qMk8E1EWHnM9UeUy',      // From EmailJS Account page
+            serviceId: 'service_nw1upvn',       // From Email Services page
+            templateId: 'template_caca4tg'      // From Email Templates page
+        };
+        
+        // Initialize EmailJS
+        emailjs.init(EMAILJS_CONFIG.publicKey);
+    </script>
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/menu-data.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
