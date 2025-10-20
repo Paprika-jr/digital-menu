@@ -258,7 +258,7 @@ npm run build
 This is a learning project developed as part of ICT studies at Witas.oy Digikeskus.
 
 ### Development Team:
-- **Developer**: Khun Htet Linn Aung
+- **Developer**: Khun Htet Lin Aung
 - **Organization**: Witas.oy - Digikeskus Viitasaari
 - **Purpose**: Second-year ICT student trainee project
 
