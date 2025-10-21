@@ -1,14 +1,14 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
-// Your Firebase configuration (PASTE YOUR CONFIG HERE)
+// Firebase configuration using environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyBFP8Q2HqjS9kETi_bln1TjGmgeAnyVJQc",
-  authDomain: "digital-menu-system-828be.firebaseapp.com",
-  projectId: "digital-menu-system-828be",
-  storageBucket: "digital-menu-system-828be.firebasestorage.app",
-  messagingSenderId: "965904759279",
-  appId: "1:965904759279:web:426327ea153eb14ea49e1a"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 // Initialize Firebase
