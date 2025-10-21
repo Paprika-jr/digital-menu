@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, onSnapshot } from 'firebase/firestore';
 import { db } from './firebase';
 import { ShoppingCart, Globe, Clock, ChefHat, CheckCircle, AlertCircle, X, Star, TrendingUp } from 'lucide-react';
 
@@ -269,13 +269,26 @@ function App() {
       setOrderSubmitted(true);
       setShowOrderForm(false);
       
-      setTimeout(() => setOrderStatus('preparing'), 3000);
-      setTimeout(() => setOrderStatus('ready'), calculateTotalPrepTime() * 1000);
+      // 🔥 Listen to order status updates in real-time
+      listenToOrderStatus(docRef.id);
       
     } catch (error) {
       console.error('❌ Error saving order:', error);
       alert('Failed to place order. Please try again.');
     }
+  };
+
+  // 🎧 Real-time listener for order status changes
+  const listenToOrderStatus = (orderId) => {
+    const orderRef = doc(db, 'orders', orderId);
+    
+    onSnapshot(orderRef, (docSnap) => {
+      if (docSnap.exists()) {
+        const orderData = docSnap.data();
+        console.log('📡 Order status updated from Firebase:', orderData.status);
+        setOrderStatus(orderData.status);
+      }
+    });
   };
 
   const getBadgeText = (badge) => {
