@@ -1,316 +1,300 @@
-# 🍽️ Restaurant Digital Menu System
+# 🍽️ Digital Menu & Ordering System
 
-A modern, real-time digital menu and ordering system for restaurants and cafés. Customers can scan QR codes, browse the menu, place orders, and track preparation time - all from their phones!
+A real-time digital menu and ordering system for restaurants where customers can scan QR codes, browse menus, place orders, and track preparation status all from their phones.
 
-![Status](https://img.shields.io/badge/status-in%20development-yellow)
-![Version](https://img.shields.io/badge/version-2.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+**Status**: ✅ MVP Complete & Deployed  
+**Version**: 2.0  
+**Live Demo**: [https://digital-menu-nine-fawn.vercel.app](https://digital-menu-nine-fawn.vercel.app)  
+**Developer**: Khun Htet Lin Aung 
 
 ---
 
-## 🌟 Features
+## ✨ Features
 
-### ✅ Completed Features:
-- **Digital Menu Display** - Beautiful, mobile-first menu interface
-- **Multilingual Support** - Switch between English and Finnish with one click
-- **Shopping Cart** - Add/remove items with quantity management
-- **Preparation Time Tracking** - See estimated cook time for each item
-- **Smart Time Calculation** - Calculates max prep time (parallel cooking)
-- **Order Placement** - Customers can submit orders with table number
-- **Order Status Tracking** - Real-time status updates (Received → Preparing → Ready)
-- **Responsive Design** - Works perfectly on mobile, tablet, and desktop
-- **Clean UI** - Modern, intuitive interface with smooth animations
+### Customer Side
+- 📱 **Mobile-responsive digital menu** with café-style design
+- 🌍 **Bilingual support** - Switch between English & Finnish instantly
+- 🛒 **Shopping cart** with quantity management
+- ⏱️ **Real-time preparation time** estimates for each item
+- 📊 **Live order tracking** - Watch your order progress (Received → Preparing → Ready)
+- 🌟 **Today's Special** section with promotional pricing
+- 🏆 **Item badges** - Popular, Bestseller, New items highlighted
+- 💬 **Special requests** - Add notes to your order
 
-### 🚧 In Progress:
-- Firebase backend integration
-- Restaurant admin dashboard
-- Real-time order notifications
-- Kitchen display system
-
-### 📅 Planned Features:
-- QR code generation for tables
-- Payment integration
-- Order history
-- Analytics dashboard
-- Multi-restaurant management
-- Email/SMS notifications
+### Restaurant Admin Dashboard
+- 🔐 **Secure admin authentication** - Protected login system
+- 📥 **Real-time order notifications** - Orders appear instantly
+- 🎛️ **Order management** - Update status with one click
+- 📊 **Order filtering** - View All, New, Cooking, or Ready orders
+- 👥 **Customer details** - Name, table number, special requests
+- 💰 **Order totals** - Automatic price calculation
+- ⏰ **Prep time tracking** - See estimated cooking time
+- 🔄 **Live sync** - Status updates reflected on customer side instantly
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend:
-- **React 18** - UI framework
-- **Vite** - Build tool and dev server (fast, modern)
-- **Pure CSS** - Custom styling (no framework dependencies)
+### Frontend
+- **React 18** - Modern UI framework
+- **Vite** - Lightning-fast build tool
+- **Pure CSS** - Custom café-themed styling
 - **Lucide React** - Beautiful icon library
 
-### Backend (Coming Soon):
-- **Firebase Firestore** - Real-time database
-- **Firebase Authentication** - Admin login
-- **Firebase Hosting** - Deployment
+### Backend
+- **Firebase Firestore** - Real-time NoSQL database
+- **Firebase Authentication** - Secure admin login
+- **Firebase Hosting** - Ready for deployment
+
+### Deployment
+- **Vercel** - Production hosting (auto-deploy from GitHub)
+- **GitHub** - Version control & collaboration
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites:
-- Node.js 16+ installed
-- npm or yarn package manager
+### Prerequisites
+- Node.js 16+
+- npm or yarn
+- Firebase account
 
-### Installation:
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/YOUR_USERNAME/digital-menu.git
-cd digital-menu
 
-# Navigate to v2 (production version)
-cd digital-menu-v2
+# Navigate to project
+cd digital-menu/digital-menu-v2
 
 # Install dependencies
 npm install
+
+# Set up environment variables (see below)
 
 # Start development server
 npm run dev
 ```
 
-The app will open at `http://localhost:5173/`
+### Environment Setup
+
+Create `.env` file in `digital-menu-v2/`:
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your-project-id
+VITE_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=123456789012
+VITE_FIREBASE_APP_ID=1:123456789012:web:abcdef123456
+```
 
 ---
 
 ## 📁 Project Structure
 ```
 digital-menu/
-├── README.md                    # This file
+├── README.md
+├── LICENSE
 │
-├── digital-menu-v1/            # Archive - Initial HTML/CSS/JS prototype
-│   └── (old files)
+├── digital-menu-v1/              # Initial prototype (archived)
+│   └── (HTML/CSS/JS version)
 │
-└── digital-menu-v2/            # Current Production Version
+└── digital-menu-v2/              # Production version
     ├── public/
     │   └── index.html
     ├── src/
-    │   ├── App.jsx             # Main application component
-    │   ├── index.css           # Global styles
-    │   └── main.jsx            # Entry point
-    ├── package.json
-    └── vite.config.js
+    │   ├── App.jsx               # Customer menu interface
+    │   ├── AdminDashboard.jsx    # Restaurant admin panel
+    │   ├── firebase.js           # Firebase configuration
+    │   ├── index.css             # Global styles
+    │   └── main.jsx              # Entry point & routing
+    ├── .env                      # Environment variables (local)
+    ├── vercel.json               # Vercel deployment config
+    └── package.json
 ```
+
+---
+
+## 🌐 Live URLs
+
+**Customer Menu:**  
+https://digital-menu-nine-fawn.vercel.app/
+
+**Admin Dashboard:**  
+https://digital-menu-nine-fawn.vercel.app/admin
+
+---
+
+## 🔐 Security
+
+- ✅ Firebase Authentication for admin access
+- ✅ Firestore security rules configured
+- ✅ Environment variables for sensitive data
+- ✅ Protected admin routes
+- ⚠️ Customer orders are publicly readable (by design for pilot)
+
 
 ---
 
 ## 📱 How It Works
 
-### Customer Flow:
-1. **Scan QR Code** → Opens digital menu on their phone
-2. **Browse Menu** → View items with prices and prep times
-3. **Add to Cart** → Select items and quantities
-4. **Place Order** → Enter name and table number
-5. **Track Status** → Watch order progress in real-time
-6. **Get Notified** → When food is ready!
+### Customer Flow
+1. Scan QR code on table → Opens digital menu
+2. Browse menu with prices & prep times
+3. Add items to cart
+4. Enter name & table number
+5. Submit order
+6. Track status in real-time (Received → Preparing → Ready)
 
-### Restaurant Flow (Coming Soon):
-1. **Receive Orders** → New orders appear in admin dashboard
-2. **Start Cooking** → Mark order as "Preparing"
-3. **Complete** → Mark as "Ready" when done
-4. **Notify Customer** → Automatic status update
-
----
-
-## 🎨 Screenshots
-
-### Customer Menu View
-- Clean, modern interface
-- Item cards with emojis and prep times
-- Easy-to-use shopping cart
-
-### Order Tracking
-- Visual progress indicator
-- Real-time status updates
-- Estimated completion time
-
-### Multi-language Support
-- Toggle between EN/FI instantly
-- All text and UI elements translate
-
-*(Screenshots coming soon)*
-
----
-
-## 🔧 Development
-
-### Available Scripts:
-```bash
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Lint code
-npm run lint
-```
-
-### Adding New Menu Items:
-
-Edit the `menuData` object in `src/App.jsx`:
-```javascript
-const menuData = {
-  coffee: [
-    { 
-      id: 1, 
-      name: { en: "Espresso", fi: "Espresso" }, 
-      price: 3.50, 
-      prepTime: 3, 
-      image: "☕" 
-    },
-    // Add more items...
-  ],
-  // Add more categories...
-};
-```
+### Restaurant Flow
+1. Admin logs in to dashboard
+2. New orders appear automatically
+3. Click "Start Cooking" → Customer sees "Preparing"
+4. Click "Mark as Ready" → Customer sees "Ready"
+5. Monitor all active orders by status
 
 ---
 
 ## 🚀 Deployment
 
-### Deploy to Vercel (Recommended):
+### Deploy to Vercel
 ```bash
-# Install Vercel CLI
+# Install Vercel CLI (optional)
 npm install -g vercel
 
 # Deploy
-cd digital-menu-v2
 vercel
 ```
 
-### Deploy to Netlify:
-```bash
-# Build the project
-npm run build
+Or connect your GitHub repo to Vercel for automatic deployments.
 
-# Deploy dist/ folder to Netlify
-# Or connect GitHub repo for automatic deployments
-```
+### Environment Variables in Vercel
+
+Add these in Vercel Dashboard → Project Settings → Environment Variables:
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
 
 ---
 
-## 📊 Development Roadmap
+## 🔄 Development Roadmap
 
-### Phase 1: Frontend (Week 1-2) ✅ **COMPLETED**
-- [x] Menu display with categories
+### ✅ Phase 1: Core Features (COMPLETED)
+- [x] Digital menu display
 - [x] Shopping cart functionality
-- [x] Bilingual support (EN/FI)
-- [x] Prep time tracking
-- [x] Order form
-- [x] Order status visualization
-- [x] Responsive design
+- [x] Order placement
+- [x] Real-time order tracking
+- [x] Admin dashboard
+- [x] Firebase integration
+- [x] Admin authentication
+- [x] Production deployment
+- [x] Real-time status sync
 
-### Phase 2: Backend Integration (Week 3-4) 🔄 **IN PROGRESS**
-- [ ] Set up Firebase project
-- [ ] Firestore database structure
-- [ ] Save orders to database
-- [ ] Real-time order updates
-- [ ] Admin authentication
+### 🔄 Phase 2: Enhancement (IN PROGRESS)
+- [ ] QR code generation for tables
+- [ ] Menu editor for restaurants
+- [ ] Order history & analytics
+- [ ] Email/SMS notifications
+- [ ] Print receipt functionality
 
-### Phase 3: Admin Dashboard (Week 5-6)
-- [ ] Order management interface
-- [ ] Kitchen display system
-- [ ] Menu editor
-- [ ] Order history
-- [ ] Basic analytics
-
-### Phase 4: Production Features (Week 7-8)
-- [ ] QR code generation
-- [ ] Payment integration
-- [ ] Email notifications
+### 📅 Phase 3: Scaling (PLANNED)
+- [ ] Payment integration (Stripe/PayPal)
 - [ ] Multi-restaurant support
-- [ ] Advanced analytics
-
-### Phase 5: Launch (Week 9+)
-- [ ] Beta testing with real restaurant
-- [ ] Bug fixes and optimization
-- [ ] Marketing materials
-- [ ] Documentation
-- [ ] Official launch
+- [ ] Kitchen printer integration
+- [ ] Table reservation system
+- [ ] Loyalty program
+- [ ] Advanced analytics dashboard
 
 ---
 
 ## 💼 Business Model
 
-### Pricing Options (Draft):
-- **Basic**: €20/month - Digital menu only
-- **Pro**: €40/month - Menu + Ordering + Admin dashboard
-- **Premium**: €70/month - All features + Analytics + Priority support
+### Target Market
+Small to medium-sized cafés and restaurants in Central Finland, with focus on Viitasaari region.
 
-### Target Market:
-- Small to medium-sized cafés and restaurants in Finland
-- Focus on Viitasaari and Central Finland region
-- Partnership with Witas.oy Digikeskus
+### Pricing (Under Development)
+- **Basic**: under development
+- **Pro**: under development
+- **Enterprise**: under development
+
+### Pilot Program
+- ✅ 2-week free trial
+- ✅ Full setup & training included
+- ✅ No commitment required
+- ✅ Dedicated support
+
+---
+
+## 📊 Current Status
+
+### Completed Features
+- ✅ Full customer ordering flow
+- ✅ Real-time admin dashboard
+- ✅ Firebase backend integration
+- ✅ Secure authentication
+- ✅ Production deployment
+- ✅ Mobile-responsive design
+- ✅ Bilingual support (EN/FI)
+
+### In Development
+- 🔄 QR code generator
+- 🔄 Restaurant onboarding docs
+- 🔄 Marketing materials
+
+### Next Milestone
+First pilot restaurant launch - Target: Within 2 weeks
 
 ---
 
 ## 🤝 Contributing
 
-This is a learning project developed as part of ICT studies at Witas.oy Digikeskus.
-
-### Development Team:
-- **Developer**: Khun Htet Lin Aung
-- **Organization**: Witas.oy - Digikeskus Viitasaari
-- **Purpose**: Second-year ICT student trainee project
-
----
-
-## 📝 Version History
-
-### Version 2.0 (Current) - October 2025
-- Complete rebuild with React + Vite
-- Pure CSS styling (removed Tailwind dependency)
-- Enhanced user experience
-- Preparation time tracking
-- Order status system
-- Production-ready frontend
-
-### Version 1.0 - October 2025
-- Initial HTML/CSS/JS prototype
-- Basic menu display
-- Email integration
-- GitHub Pages deployment
-- **Status**: Archived in `digital-menu-v1/`
-
----
-
-## 📄 License
-
-MIT License - Feel free to use for learning purposes
+This is a learning project developed during ICT studies. Feedback and suggestions are welcome!
 
 ---
 
 ## 📞 Contact & Support
 
-- **Developer**: Khun Htet Lin Aung
-- **Organization**: Witas.oy Digikeskus
-- **Location**: Viitasaari, Finland
+**Developer**: Khun Htet Lin Aung  
+**Organization**: Witas.oy Digikeskus  
+**Location**: Viitasaari, Finland  
+
+For inquiries about pilot program or collaboration, please reach out through GitHub.
 
 ---
 
 ## 🙏 Acknowledgments
 
-- Witas.oy Digikeskus for the opportunity
-- Open source community for amazing tools
-- Local restaurants for feedback and support
+- **Witas.oy Digikeskus** - For providing the training opportunity
+- **Local Viitasaari cafés** - For feedback and inspiration
+- **Open source community** - For amazing tools and libraries
 
 ---
 
-## 📚 Resources
+## 📄 License
 
-- [React Documentation](https://react.dev)
-- [Vite Documentation](https://vitejs.dev)
-- [Firebase Documentation](https://firebase.google.com/docs)
-- [Lucide Icons](https://lucide.dev)
+MIT License - See LICENSE file for details
+
+---
+
+## 🎯 Project Goals
+
+1. **Learn** modern web development with React & Firebase
+2. **Help** local businesses digitalize their operations
+3. **Create** a portfolio-worthy project for job applications
+4. **Launch** a real product used by actual restaurants
+
+---
+
+## 📈 Metrics
+
+**Development Time**: (October 2025)  
+**Lines of Code**: ~2,000+  
+**Features Implemented**: 15+  
+**Technologies Used**: 8  
+**Ready for Production**: ✅ YES
 
 ---
 
@@ -318,8 +302,10 @@ MIT License - Feel free to use for learning purposes
 
 **🐛 Found a bug? Open an issue!**
 
-**💡 Have suggestions? Let's chat!**
+**💡 Have suggestions? Let's discuss!**
 
 ---
 
-*Last updated: October 20, 2025*
+*Built with ☕ and 💻 in Viitasaari, Finland*
+
+*Last updated: October 21, 2025*

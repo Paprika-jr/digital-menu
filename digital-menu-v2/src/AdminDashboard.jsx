@@ -1,15 +1,180 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, orderBy, onSnapshot, doc, updateDoc } from 'firebase/firestore';
-import { db } from './firebase';
-import { Clock, CheckCircle, ChefHat, AlertCircle, User, Hash, StickyNote } from 'lucide-react';
+import { db, auth } from './firebase';
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { Clock, CheckCircle, ChefHat, AlertCircle, User, Hash, StickyNote, LogOut } from 'lucide-react';
 
+// Login Component
+const AdminLogin = ({ onLoginSuccess }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log('✅ Admin logged in');
+      onLoginSuccess();
+    } catch (error) {
+      console.error('❌ Login failed:', error);
+      setError('Invalid email or password');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #6B4423 0%, #8B6F47 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '1rem'
+    }}>
+      <div style={{
+        background: 'white',
+        borderRadius: '16px',
+        padding: '2rem',
+        maxWidth: '400px',
+        width: '100%',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.2)'
+      }}>
+        <h1 style={{
+          fontSize: '2rem',
+          fontWeight: 'bold',
+          color: '#6B4423',
+          marginBottom: '0.5rem',
+          fontFamily: 'Georgia, serif',
+          textAlign: 'center'
+        }}>
+          🔐 Admin Login
+        </h1>
+        <p style={{
+          color: '#8B6F47',
+          textAlign: 'center',
+          marginBottom: '2rem'
+        }}>
+          Kitchen Dashboard Access
+        </p>
+
+        <form onSubmit={handleLogin}>
+          <div style={{ marginBottom: '1rem' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              color: '#6B4423',
+              fontWeight: '600'
+            }}>
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@example.com"
+              required
+              disabled={loading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: '2px solid #f0e8dc',
+                borderRadius: '8px',
+                fontSize: '1rem'
+              }}
+            />
+          </div>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: '0.5rem',
+              color: '#6B4423',
+              fontWeight: '600'
+            }}>
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              disabled={loading}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                border: '2px solid #f0e8dc',
+                borderRadius: '8px',
+                fontSize: '1rem'
+              }}
+            />
+          </div>
+
+          {error && (
+            <div style={{
+              background: '#fee2e2',
+              color: '#dc2626',
+              padding: '0.75rem',
+              borderRadius: '8px',
+              marginBottom: '1rem',
+              fontSize: '0.9rem'
+            }}>
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              width: '100%',
+              padding: '1rem',
+              background: loading ? '#8B6F47' : '#D2691E',
+              color: 'white',
+              border: 'none',
+              borderRadius: '12px',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              transition: 'all 0.3s'
+            }}
+          >
+            {loading ? 'Logging in...' : 'Login to Dashboard'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// Main Admin Dashboard Component
 const AdminDashboard = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all'); // all, received, preparing, ready
+  const [filter, setFilter] = useState('all');
 
+  // Check authentication status
   useEffect(() => {
-    // Listen to orders in real-time
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+      setAuthLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  // Fetch orders from Firebase
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
     const q = query(
       collection(db, 'orders'),
       orderBy('timestamp', 'desc')
@@ -24,7 +189,6 @@ const AdminDashboard = () => {
       setOrders(ordersData);
       setLoading(false);
       
-      // Play sound for new orders (optional)
       const newOrders = ordersData.filter(o => o.status === 'received');
       if (newOrders.length > 0) {
         console.log('🔔 New orders:', newOrders.length);
@@ -35,7 +199,7 @@ const AdminDashboard = () => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [isAuthenticated]);
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
@@ -49,12 +213,21 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log('👋 Admin logged out');
+    } catch (error) {
+      console.error('❌ Logout failed:', error);
+    }
+  };
+
   const getStatusColor = (status) => {
     switch(status) {
-      case 'received': return '#2563eb'; // Blue
-      case 'preparing': return '#f59e0b'; // Orange
-      case 'ready': return '#10b981'; // Green
-      default: return '#6b7280'; // Gray
+      case 'received': return '#2563eb';
+      case 'preparing': return '#f59e0b';
+      case 'ready': return '#10b981';
+      default: return '#6b7280';
     }
   };
 
@@ -79,6 +252,29 @@ const AdminDashboard = () => {
     ready: orders.filter(o => o.status === 'ready').length,
   };
 
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div style={{ 
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#f8f5f0'
+      }}>
+        <div style={{ textAlign: 'center', fontSize: '1.2rem', color: '#6B4423' }}>
+          Loading... 🔄
+        </div>
+      </div>
+    );
+  }
+
+  // Show login if not authenticated
+  if (!isAuthenticated) {
+    return <AdminLogin onLoginSuccess={() => setIsAuthenticated(true)} />;
+  }
+
+  // Show loading while fetching orders
   if (loading) {
     return (
       <div style={{ padding: '2rem', textAlign: 'center', fontSize: '1.2rem' }}>
@@ -87,6 +283,7 @@ const AdminDashboard = () => {
     );
   }
 
+  // Main Dashboard
   return (
     <div style={{ minHeight: '100vh', background: '#f8f5f0' }}>
       {/* Header */}
@@ -99,11 +296,35 @@ const AdminDashboard = () => {
         top: 0,
         zIndex: 100
       }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-          <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '0.5rem', fontFamily: 'Georgia, serif' }}>
-            🍽️ Kitchen Dashboard
-          </h1>
-          <p style={{ opacity: 0.9 }}>Real-time order management</p>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '0.5rem', fontFamily: 'Georgia, serif' }}>
+              🍽️ Kitchen Dashboard
+            </h1>
+            <p style={{ opacity: 0.9 }}>Real-time order management</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.75rem 1.5rem',
+              background: 'rgba(255,255,255,0.2)',
+              border: '1px solid rgba(255,255,255,0.3)',
+              borderRadius: '25px',
+              color: 'white',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: '600',
+              transition: 'all 0.3s'
+            }}
+            onMouseOver={(e) => e.target.style.background = 'rgba(255,255,255,0.3)'}
+            onMouseOut={(e) => e.target.style.background = 'rgba(255,255,255,0.2)'}
+          >
+            <LogOut size={20} />
+            Logout
+          </button>
         </div>
       </div>
 
