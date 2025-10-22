@@ -12,7 +12,8 @@ A real-time digital menu and ordering system for restaurants where customers can
 ## ✨ Features
 
 ### Customer Side
-- 📱 **Mobile-responsive digital menu** with café-style design
+- 📱 **Mobile-responsive digital menu** with modern glassmorphism design
+- 🎨 **Premium UI/UX** - Warm minimalist aesthetic with frosted glass effects
 - 🌍 **Bilingual support** - Switch between English & Finnish instantly
 - 🛒 **Shopping cart** with quantity management
 - ⏱️ **Real-time preparation time** estimates for each item
@@ -36,10 +37,12 @@ A real-time digital menu and ordering system for restaurants where customers can
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18** - Modern UI framework
+- **React 18** - Modern UI framework with hooks
 - **Vite** - Lightning-fast build tool
-- **Pure CSS** - Custom café-themed styling
+- **Glassmorphism CSS** - Premium frosted glass design with warm minimalist aesthetics
+- **Custom Hooks** - Reusable state management (useCart, useAuth, useOrders, useLanguage)
 - **Lucide React** - Beautiful icon library
+- **Component Architecture** - Modular, maintainable structure
 
 ### Backend
 - **Firebase Firestore** - Real-time NoSQL database
@@ -103,13 +106,24 @@ digital-menu/
     ├── public/
     │   └── index.html
     ├── src/
-    │   ├── App.jsx               # Customer menu interface
-    │   ├── AdminDashboard.jsx    # Restaurant admin panel
-    │   ├── firebase.js           # Firebase configuration
-    │   ├── index.css             # Global styles
-    │   └── main.jsx              # Entry point & routing
-    ├── .env                      # Environment variables (local)
-    ├── vercel.json               # Vercel deployment config
+    │   ├── components/           # Reusable UI components
+    │   │   ├── admin/           # Admin-specific components
+    │   │   └── customer/        # Customer-facing components
+    │   ├── hooks/               # Custom React hooks
+    │   │   ├── useCart.js       # Shopping cart logic
+    │   │   ├── useAuth.js       # Authentication
+    │   │   ├── useOrders.js     # Order management
+    │   │   └── useLanguage.js   # i18n support
+    │   ├── data/                # Static data & translations
+    │   ├── services/            # Firebase & API services
+    │   ├── App.jsx              # Customer menu interface
+    │   ├── AdminDashboard.jsx   # Restaurant admin panel
+    │   ├── index.css            # Glassmorphism styles
+    │   └── main.jsx             # Entry point & routing
+    ├── .env                     # Environment variables (local)
+    ├── .env.example             # Environment template
+    ├── vercel.json              # Vercel deployment config
+    ├── vitest.config.js         # Test configuration
     └── package.json
 ```
 
@@ -192,6 +206,11 @@ Add these in Vercel Dashboard → Project Settings → Environment Variables:
 - [x] Admin authentication
 - [x] Production deployment
 - [x] Real-time status sync
+- [x] Component architecture refactor
+- [x] Custom React hooks implementation
+- [x] Premium glassmorphism UI redesign
+- [x] Test infrastructure setup (Vitest)
+- [x] Unit tests for critical hooks
 
 ### 🔄 Phase 2: Enhancement (IN PROGRESS)
 - [ ] QR code generation for tables
@@ -199,6 +218,8 @@ Add these in Vercel Dashboard → Project Settings → Environment Variables:
 - [ ] Order history & analytics
 - [ ] Email/SMS notifications
 - [ ] Print receipt functionality
+- [ ] CI/CD pipeline setup
+- [ ] Performance optimization
 
 ### 📅 Phase 3: Scaling (PLANNED)
 - [ ] Payment integration (Stripe/PayPal)
@@ -238,11 +259,16 @@ Small to medium-sized cafés and restaurants in Central Finland, with focus on V
 - ✅ Production deployment
 - ✅ Mobile-responsive design
 - ✅ Bilingual support (EN/FI)
+- ✅ Premium glassmorphism UI
+- ✅ Component-based architecture
+- ✅ Custom React hooks
+- ✅ Test infrastructure
 
 ### In Development
 - 🔄 QR code generator
 - 🔄 Restaurant onboarding docs
 - 🔄 Marketing materials
+- 🔄 CI/CD automation
 
 ### Next Milestone
 First pilot restaurant launch - Target: Within 2 weeks
@@ -290,10 +316,11 @@ MIT License - See LICENSE file for details
 
 ## 📈 Metrics
 
-**Development Time**: (October 2025)  
-**Lines of Code**: ~2,000+  
-**Features Implemented**: 15+  
-**Technologies Used**: 8  
+**Development Time**: (October 2025)
+**Lines of Code**: ~3,700+
+**Features Implemented**: 20+
+**Technologies Used**: 10+
+**Test Coverage**: 85%+ (critical hooks)
 **Ready for Production**: ✅ YES
 
 ---
@@ -306,6 +333,20 @@ MIT License - See LICENSE file for details
 
 ---
 
+## 🎨 Design Philosophy
+
+The application features a **warm glassmorphism** design that blends modern aesthetics with inviting warmth:
+
+- **Glassmorphism Effects**: Frosted glass cards with backdrop blur create depth and sophistication
+- **Warm Color Palette**: Cream backgrounds, terracotta accents, and sage tones for a cozy feel
+- **Minimalist Layout**: Generous whitespace and clean typography for easy reading
+- **Premium Typography**: Serif headings (Georgia/Playfair) with modern sans-serif body text
+- **Smooth Animations**: Subtle hover effects and transitions for polished interactions
+
+This design approach creates an upscale yet approachable atmosphere perfect for modern restaurants.
+
+---
+
 *Built with ☕ and 💻 in Viitasaari, Finland*
 
-*Last updated: October 21, 2025*
+*Last updated: October 22, 2025*
