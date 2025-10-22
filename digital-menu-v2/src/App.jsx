@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { collection, addDoc, serverTimestamp, doc, onSnapshot } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import { db } from './firebase';
 import { ShoppingCart, Globe, Clock, ChefHat, CheckCircle, AlertCircle, X, Star, TrendingUp } from 'lucide-react';
 
@@ -194,21 +195,52 @@ const menuData = {
 };
 
 function App() {
-  const [language, setLanguage] = useState('en');
-  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
+  const [language, setLanguage] = useState(() => {
+    try {
+      const saved = localStorage.getItem('dm_language');
+      return saved || 'en';
+    } catch {
+      return 'en';
+    }
+  });
+  const [cart, setCart] = useState(() => {
+    try {
+      const saved = localStorage.getItem('dm_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
   const [showCart, setShowCart] = useState(false);
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [orderSubmitted, setOrderSubmitted] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderStatus, setOrderStatus] = useState('received');
   const [formData, setFormData] = useState({ name: '', tableNumber: '', notes: '' });
+  const [lastOrderId, setLastOrderId] = useState(() => {
+    try {
+      return localStorage.getItem('dm_last_order_id') || null;
+    } catch {
+      return null;
+    }
+  });
 
   const t = translations[language];
 
-  const calculateTotalPrepTime = () => {
+  const calculateTotalPrepTime = useMemo(() => {
     if (cart.length === 0) return 0;
     return Math.max(...cart.map(item => item.prepTime));
-  };
+  }, [cart]);
+
+  // Persist language and cart
+  useEffect(() => {
+    try { localStorage.setItem('dm_language', language); } catch {}
+  }, [language]);
+
+  useEffect(() => {
+    try { localStorage.setItem('dm_cart', JSON.stringify(cart)); } catch {}
+  }, [cart]);
 
   const addToCart = (item) => {
     const existingItem = cart.find(i => i.id === item.id);
@@ -255,7 +287,7 @@ function App() {
           prepTime: item.prepTime
         })),
         totalPrice: getTotalPrice(),
-        estimatedPrepTime: calculateTotalPrepTime(),
+        estimatedPrepTime: calculateTotalPrepTime,
         status: 'received',
         timestamp: serverTimestamp(),
         language: language
@@ -267,10 +299,16 @@ function App() {
       
       setOrderNumber(docRef.id.slice(-4).toUpperCase());
       setOrderSubmitted(true);
+      setCart([]); // Clear cart after successful order
       setShowOrderForm(false);
+      try { localStorage.setItem('dm_last_order_id', docRef.id); } catch {}
+      setLastOrderId(docRef.id);
       
       // 🔥 Listen to order status updates in real-time
       listenToOrderStatus(docRef.id);
+
+      // Navigate to order status page for shareable tracking
+      navigate(`/status/${docRef.id}`);
       
     } catch (error) {
       console.error('❌ Error saving order:', error);
@@ -339,7 +377,7 @@ function App() {
                       </p>
                       {isCurrent && orderStatus === 'preparing' && (
                         <p className="status-time">
-                          {t.estimatedWait}: {calculateTotalPrepTime()} {t.minutes}
+                          {t.estimatedWait}: {calculateTotalPrepTime} {t.minutes}
                         </p>
                       )}
                     </div>
@@ -372,6 +410,15 @@ function App() {
               <Globe size={20} />
               {language === 'en' ? 'FI' : 'EN'}
             </button>
+            {lastOrderId && (
+              <button 
+                onClick={() => navigate(`/status/${lastOrderId}`)} 
+                className="btn btn-cart"
+                style={{ background: '#10b981' }}
+              >
+                📋 {language === 'en' ? 'View my order' : 'Katso tilaukseni'}
+              </button>
+            )}
             <button onClick={() => setShowCart(true)} className="btn btn-cart">
               <ShoppingCart size={20} />
               {cart.length > 0 && (
@@ -521,7 +568,7 @@ function App() {
                     </div>
                     <div className="estimated-time">
                       <Clock size={16} />
-                      <span>{t.estimatedWait}: {calculateTotalPrepTime()} {t.minutes}</span>
+                      <span>{t.estimatedWait}: {calculateTotalPrepTime} {t.minutes}</span>
                     </div>
                   </div>
 
