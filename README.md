@@ -12,25 +12,25 @@ A real-time digital menu and ordering system for restaurants where customers can
 ## ✨ Features
 
 ### Customer Side
-- 📱 **Mobile-responsive digital menu** with modern glassmorphism design
-- 🎨 **Premium UI/UX** - Warm minimalist aesthetic with frosted glass effects
-- 🌍 **Bilingual support** - Switch between English & Finnish instantly
-- 🛒 **Shopping cart** with quantity management
-- ⏱️ **Real-time preparation time** estimates for each item
-- 📊 **Live order tracking** - Watch your order progress (Received → Preparing → Ready)
-- 🌟 **Today's Special** section with promotional pricing
-- 🏆 **Item badges** - Popular, Bestseller, New items highlighted
-- 💬 **Special requests** - Add notes to your order
+- **Mobile-responsive digital menu** with modern glassmorphism design
+- **Premium UI/UX** - Warm minimalist aesthetic with frosted glass effects
+- **Bilingual support** - Switch between English & Finnish instantly
+- **Shopping cart** with quantity management
+- **Real-time preparation time** estimates for each item
+- **Live order tracking** - Watch your order progress (Received → Preparing → Ready)
+- **Today's Special** section with promotional pricing
+- **Item badges** - Popular, Bestseller, New items highlighted
+- **Special requests** - Add notes to your order
 
 ### Restaurant Admin Dashboard
-- 🔐 **Secure admin authentication** - Protected login system
-- 📥 **Real-time order notifications** - Orders appear instantly
-- 🎛️ **Order management** - Update status with one click
-- 📊 **Order filtering** - View All, New, Cooking, or Ready orders
-- 👥 **Customer details** - Name, table number, special requests
-- 💰 **Order totals** - Automatic price calculation
-- ⏰ **Prep time tracking** - See estimated cooking time
-- 🔄 **Live sync** - Status updates reflected on customer side instantly
+- **Secure admin authentication** - Protected login system
+- **Real-time order notifications** - Orders appear instantly
+- **Order management** - Update status with one click
+- **Order filtering** - View All, New, Cooking, or Ready orders
+- **Customer details** - Name, table number, special requests
+- **Order totals** - Automatic price calculation
+- **Prep time tracking** - See estimated cooking time
+- **Live sync** - Status updates reflected on customer side instantly
 
 ---
 
@@ -325,11 +325,11 @@ MIT License - See LICENSE file for details
 
 ---
 
-**⭐ Star this repo if you find it useful!**
+**Star this repo if you find it useful!**
 
-**🐛 Found a bug? Open an issue!**
+**Found a bug? Open an issue!**
 
-**💡 Have suggestions? Let's discuss!**
+**Have suggestions? Let's discuss!**
 
 ---
 
