@@ -1,0 +1,200 @@
+{
+  "todaySpecial": {
+    "id": 99,
+    "name": {
+      "en": "Grilled Salmon with Lemon Butter",
+      "fi": "Grillattu Lohi Sitruunavoin Kera"
+    },
+    "description": {
+      "en": "Fresh Norwegian salmon with seasonal vegetables",
+      "fi": "Tuore norjalainen lohi kauden vihannesten kera"
+    },
+    "price": 18.90,
+    "originalPrice": 24.90,
+    "prepTime": 20,
+    "image": "🐟"
+  },
+  "categories": {
+    "coffee": [
+      {
+        "id": 1,
+        "name": {
+          "en": "Espresso",
+          "fi": "Espresso"
+        },
+        "description": {
+          "en": "Strong and bold",
+          "fi": "Vahva ja rohkea"
+        },
+        "price": 3.50,
+        "prepTime": 3,
+        "image": "☕",
+        "badge": "popular"
+      },
+      {
+        "id": 2,
+        "name": {
+          "en": "Cappuccino",
+          "fi": "Cappuccino"
+        },
+        "description": {
+          "en": "Creamy and smooth",
+          "fi": "Kermainen ja pehmeä"
+        },
+        "price": 4.50,
+        "prepTime": 4,
+        "image": "☕",
+        "badge": "bestseller"
+      },
+      {
+        "id": 3,
+        "name": {
+          "en": "Latte",
+          "fi": "Latte"
+        },
+        "description": {
+          "en": "Mild and milky",
+          "fi": "Mieto ja maitoa"
+        },
+        "price": 4.80,
+        "prepTime": 4,
+        "image": "☕"
+      },
+      {
+        "id": 4,
+        "name": {
+          "en": "Mocha",
+          "fi": "Mocha"
+        },
+        "description": {
+          "en": "Coffee meets chocolate",
+          "fi": "Kahvi kohtaa suklaan"
+        },
+        "price": 5.20,
+        "prepTime": 5,
+        "image": "☕",
+        "badge": "new"
+      }
+    ],
+    "food": [
+      {
+        "id": 5,
+        "name": {
+          "en": "Club Sandwich",
+          "fi": "Club-voileipä"
+        },
+        "description": {
+          "en": "Triple-decker with chicken & bacon",
+          "fi": "Kolmikerroksinen kana-pekoni"
+        },
+        "price": 12.90,
+        "prepTime": 12,
+        "image": "🥪",
+        "badge": "popular"
+      },
+      {
+        "id": 6,
+        "name": {
+          "en": "Caesar Salad",
+          "fi": "Caesar-salaatti"
+        },
+        "description": {
+          "en": "Crispy romaine with parmesan",
+          "fi": "Rapeaa salaattia ja parmesania"
+        },
+        "price": 11.50,
+        "prepTime": 8,
+        "image": "🥗"
+      },
+      {
+        "id": 7,
+        "name": {
+          "en": "Burger & Fries",
+          "fi": "Burgeri & ranskalaiset"
+        },
+        "description": {
+          "en": "Juicy beef patty with crispy fries",
+          "fi": "Mehukas pihvi ja rapeita perunoita"
+        },
+        "price": 14.90,
+        "prepTime": 18,
+        "image": "🍔",
+        "badge": "bestseller"
+      },
+      {
+        "id": 8,
+        "name": {
+          "en": "Pasta Carbonara",
+          "fi": "Pasta Carbonara"
+        },
+        "description": {
+          "en": "Creamy Italian classic",
+          "fi": "Kermainen italialainen klassikko"
+        },
+        "price": 13.50,
+        "prepTime": 15,
+        "image": "🍝"
+      },
+      {
+        "id": 9,
+        "name": {
+          "en": "Soup of the Day",
+          "fi": "Päivän keitto"
+        },
+        "description": {
+          "en": "Ask our staff for today's selection",
+          "fi": "Kysy henkilökunnalta päivän keittoa"
+        },
+        "price": 8.90,
+        "prepTime": 5,
+        "image": "🍲"
+      }
+    ],
+    "desserts": [
+      {
+        "id": 10,
+        "name": {
+          "en": "Cheesecake",
+          "fi": "Juustokakku"
+        },
+        "description": {
+          "en": "New York style with berry sauce",
+          "fi": "New York -tyylinen marjakastikkeella"
+        },
+        "price": 6.50,
+        "prepTime": 5,
+        "image": "🍰",
+        "badge": "popular"
+      },
+      {
+        "id": 11,
+        "name": {
+          "en": "Ice Cream",
+          "fi": "Jäätelö"
+        },
+        "description": {
+          "en": "Three scoops of your choice",
+          "fi": "Kolme palloa omasta valinnasta"
+        },
+        "price": 5.00,
+        "prepTime": 2,
+        "image": "🍨"
+      },
+      {
+        "id": 12,
+        "name": {
+          "en": "Chocolate Brownie",
+          "fi": "Suklaabrownie"
+        },
+        "description": {
+          "en": "Warm with vanilla ice cream",
+          "fi": "Lämmin vaniljajäätelön kera"
+        },
+        "price": 5.50,
+        "prepTime": 3,
+        "image": "🍫",
+        "badge": "bestseller"
+      }
+    ]
+  }
+}
