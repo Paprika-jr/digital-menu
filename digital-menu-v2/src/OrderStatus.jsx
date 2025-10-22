@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from './services/firebase';
 import { CheckCircle, ChefHat, AlertCircle, Clock, ArrowLeft } from 'lucide-react';
 
 const translations = {

@@ -5,7 +5,7 @@ import App from './App.jsx'
 import AdminDashboard from './AdminDashboard.jsx'
 import OrderStatus from './OrderStatus.jsx'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from './firebase'
+import { auth } from './services/firebase'
 import './index.css'
 
 function ProtectedRoute({ children }) {

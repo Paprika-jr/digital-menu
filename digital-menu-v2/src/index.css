@@ -819,3 +819,16 @@ body {
   font-weight: 600;
   font-size: 1.2rem;
 }
+
+/* Form Validation Styles */
+.form-input.error {
+  border-color: #dc2626 !important;
+  background-color: #fef2f2;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
