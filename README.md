@@ -5,6 +5,7 @@ A real-time digital menu and ordering system for restaurants where customers can
 **Status**: ✅ MVP Complete & Deployed  
 **Version**: 2.0  
 **Live Demo**: [https://digital-menu-nine-fawn.vercel.app](https://digital-menu-nine-fawn.vercel.app)  
+**Testing branch Live demo** [https://digital-menu-git-refactor-phase-1-a114d2-lins-projects-bc970d05.vercel.app](https://digital-menu-git-refactor-phase-1-a114d2-lins-projects-bc970d05.vercel.app)
 **Developer**: Khun Htet Lin Aung 
 
 ---
