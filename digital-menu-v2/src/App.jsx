@@ -40,6 +40,7 @@ function App() {
     try {
       return localStorage.getItem('dm_last_order_id') || null;
     } catch {
+      // Return null if localStorage is unavailable
       return null;
     }
   });
@@ -78,7 +79,9 @@ function App() {
       // Save order ID for tracking
       try {
         localStorage.setItem('dm_last_order_id', result.orderId);
-      } catch {}
+      } catch {
+        // Silently fail if localStorage is unavailable
+      }
       setLastOrderId(result.orderId);
 
       // Navigate to order status page

@@ -51,7 +51,7 @@ export function useAuth() {
     try {
       await signOut(auth);
       return { success: true };
-    } catch (err) {
+    } catch {
       const errorMessage = 'Logout failed. Please try again.';
       setError(errorMessage);
       return { success: false, error: errorMessage };
