@@ -42,15 +42,7 @@ function AdminDashboard() {
   // Show loading state while checking auth
   if (authLoading) {
     return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #6B4423 0%, #8B6F47 100%)',
-        color: 'white',
-        fontSize: '1.5rem'
-      }}>
+      <div className="admin-loading">
         Loading...
       </div>
     );
@@ -63,46 +55,14 @@ function AdminDashboard() {
 
   // Admin Dashboard View
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%)',
-      padding: '2rem'
-    }}>
+    <div className="admin-container">
       {/* Header */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '2rem',
-        background: 'white',
-        padding: '1.5rem',
-        borderRadius: '12px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-      }}>
-        <div>
-          <h1 style={{ margin: 0, color: '#6B4423', fontSize: '2rem' }}>
-            Kitchen Dashboard
-          </h1>
-          <p style={{ margin: '0.5rem 0 0 0', color: '#6b7280' }}>
-            Welcome, {user.email}
-          </p>
+      <div className="admin-header">
+        <div className="admin-header-content">
+          <h1>Kitchen Dashboard</h1>
+          <p>Welcome, {user.email}</p>
         </div>
-        <button
-          onClick={handleLogout}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.75rem 1.5rem',
-            background: '#dc2626',
-            color: 'white',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            fontWeight: '600'
-          }}
-        >
+        <button onClick={handleLogout} className="btn-logout">
           <LogOut size={20} />
           Logout
         </button>
@@ -117,26 +77,15 @@ function AdminDashboard() {
 
       {/* Orders List */}
       {ordersLoading ? (
-        <div style={{ textAlign: 'center', padding: '3rem', fontSize: '1.25rem', color: '#6b7280' }}>
+        <div className="orders-loading">
           Loading orders...
         </div>
       ) : orders.length === 0 ? (
-        <div style={{
-          background: 'white',
-          padding: '3rem',
-          borderRadius: '12px',
-          textAlign: 'center',
-          color: '#6b7280',
-          fontSize: '1.25rem'
-        }}>
+        <div className="orders-empty">
           {filter === 'all' ? 'No orders yet' : `No ${filter} orders`}
         </div>
       ) : (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-          gap: '1.5rem'
-        }}>
+        <div className="orders-grid">
           {orders.map(order => (
             <OrderCard
               key={order.id}
