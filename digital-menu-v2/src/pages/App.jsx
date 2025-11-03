@@ -3,17 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, Globe } from 'lucide-react';
 
 // Import custom hooks
-import { useLanguage, useCart, useOrderSubmit, useOrderTracking } from './hooks';
+import { useLanguage, useCart, useOrderSubmit, useOrderTracking } from '../hooks';
 
 // Import menu data
-import menuDataJson from './data/menuData.json';
+import menuDataJson from '../data/menuData.json';
 
 // Import components
-import { TodaySpecial } from './components/customer/Menu/TodaySpecial';
-import { MenuCategory } from './components/customer/Menu/MenuCategory';
-import { CartModal } from './components/customer/Cart/CartModal';
-import { OrderForm } from './components/customer/Order/OrderForm';
-import { OrderStatusView } from './components/customer/Order/OrderStatusView';
+import { TodaySpecial } from '../components/customer/Menu/TodaySpecial';
+import { MenuCategory } from '../components/customer/Menu/MenuCategory';
+import { CartModal } from '../components/customer/Cart/CartModal';
+import { OrderForm } from '../components/customer/Order/OrderForm';
+import { OrderStatusView } from '../components/customer/Order/OrderStatusView';
 
 function App() {
   const navigate = useNavigate();

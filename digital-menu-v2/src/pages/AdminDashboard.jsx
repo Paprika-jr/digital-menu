@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { LogOut } from 'lucide-react';
 
 // Import custom hooks
-import { useAuth, useOrders } from './hooks';
+import { useAuth, useOrders } from '../hooks';
 
 // Import components
-import { LoginForm } from './components/admin/Login/LoginForm';
-import { OrderFilters } from './components/admin/Dashboard/OrderFilters';
-import { OrderCard } from './components/admin/Dashboard/OrderCard';
+import { LoginForm } from '../components/admin/Login/LoginForm';
+import { OrderFilters } from '../components/admin/Dashboard/OrderFilters';
+import { OrderCard } from '../components/admin/Dashboard/OrderCard';
 
 function AdminDashboard() {
   const { user, loading: authLoading, error: authError, login, logout } = useAuth();
