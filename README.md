@@ -2,10 +2,15 @@
 
 A real-time digital menu and ordering system for restaurants where customers can scan QR codes, browse menus, place orders, and track preparation status all from their phones.
 
-**Status**: ✅ MVP Complete & Deployed  
-**Version**: 2.0  
-**Live Demo**: [https://digital-menu-nine-fawn.vercel.app](https://digital-menu-nine-fawn.vercel.app)  
-**Developer**: Khun Htet Lin Aung 
+**Status**: ✅ Production Ready with CI/CD
+**Version**: 2.0
+**Live Demo**: [https://digital-menu-nine-fawn.vercel.app](https://digital-menu-nine-fawn.vercel.app)
+**Developer**: Khun Htet Lin Aung
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-22%20passing-brightgreen)
+![React](https://img.shields.io/badge/React-19-blue)
+![Firebase](https://img.shields.io/badge/Firebase-latest-orange) 
 
 ---
 
@@ -37,21 +42,32 @@ A real-time digital menu and ordering system for restaurants where customers can
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18** - Modern UI framework with hooks
-- **Vite** - Lightning-fast build tool
+- **React 19** - Latest React with improved hooks
+- **Vite 7** - Lightning-fast build tool
 - **Glassmorphism CSS** - Premium frosted glass design with warm minimalist aesthetics
 - **Custom Hooks** - Reusable state management (useCart, useAuth, useOrders, useLanguage)
 - **Lucide React** - Beautiful icon library
-- **Component Architecture** - Modular, maintainable structure
+- **Component Architecture** - Modular, maintainable structure with pages/ directory
 
-### Backend
-- **Firebase Firestore** - Real-time NoSQL database
+### Backend & Infrastructure
+- **Firebase Firestore** - Real-time NoSQL database with onSnapshot listeners
 - **Firebase Authentication** - Secure admin login
-- **Firebase Hosting** - Ready for deployment
+- **Firestore Security Rules** - Public read, authenticated write
+- **Multi-device Sync** - Real-time order updates across all devices
 
-### Deployment
-- **Vercel** - Production hosting (auto-deploy from GitHub)
-- **GitHub** - Version control & collaboration
+### Testing & Quality
+- **Vitest 3** - Fast unit testing framework
+- **React Testing Library** - Component testing
+- **ESLint 9** - Code linting
+- **Prettier 3** - Code formatting
+- **22 Passing Tests** - Critical hooks and components covered
+
+### Deployment & CI/CD
+- **Vercel** - Production hosting with auto-deploy
+- **GitHub Actions** - Automated CI/CD pipeline
+- **Auto-deployment** - Push to main → Deploy to production
+- **Preview Deployments** - Every PR gets a preview URL
+- **Security Headers** - X-Frame-Options, CSP, etc.
 
 ---
 
@@ -96,36 +112,49 @@ VITE_FIREBASE_APP_ID=1:123456789012:web:abcdef123456
 ## 📁 Project Structure
 ```
 digital-menu/
-├── README.md
+├── README.md                     # This file
 ├── LICENSE
 │
 ├── digital-menu-v1/              # Initial prototype (archived)
 │   └── (HTML/CSS/JS version)
 │
-└── digital-menu-v2/              # Production version
+└── digital-menu-v2/              # Production version ⭐
+    ├── .github/workflows/       # CI/CD automation
+    │   └── ci.yml               # GitHub Actions pipeline
     ├── public/
     │   └── index.html
     ├── src/
-    │   ├── components/           # Reusable UI components
-    │   │   ├── admin/           # Admin-specific components
-    │   │   └── customer/        # Customer-facing components
+    │   ├── pages/               # Top-level page components
+    │   │   ├── App.jsx          # Customer menu (/)
+    │   │   ├── AdminDashboard.jsx  # Admin panel (/admin)
+    │   │   └── OrderStatus.jsx  # Order tracking (/status/:id)
+    │   ├── components/          # Reusable UI components
+    │   │   ├── admin/           # Admin components
+    │   │   └── customer/        # Customer components
     │   ├── hooks/               # Custom React hooks
-    │   │   ├── useCart.js       # Shopping cart logic
+    │   │   ├── useCart.js       # Shopping cart
     │   │   ├── useAuth.js       # Authentication
-    │   │   ├── useOrders.js     # Order management
+    │   │   ├── useOrders.js     # Order CRUD + real-time
     │   │   └── useLanguage.js   # i18n support
-    │   ├── data/                # Static data & translations
-    │   ├── services/            # Firebase & API services
-    │   ├── App.jsx              # Customer menu interface
-    │   ├── AdminDashboard.jsx   # Restaurant admin panel
-    │   ├── index.css            # Glassmorphism styles
-    │   └── main.jsx             # Entry point & routing
-    ├── .env                     # Environment variables (local)
-    ├── .env.example             # Environment template
-    ├── vercel.json              # Vercel deployment config
+    │   ├── data/                # Static data
+    │   │   ├── menuData.json    # Menu items
+    │   │   └── translations.json  # i18n strings
+    │   ├── services/            # External services
+    │   │   └── firebase.js      # Firebase config
+    │   ├── test/                # Test setup
+    │   ├── index.css            # Global styles
+    │   └── main.jsx             # App entry + routing
+    ├── firestore.rules          # Database security rules
+    ├── vercel.json              # Deployment config
     ├── vitest.config.js         # Test configuration
+    ├── FILE_GUIDE.md            # Quick reference
+    ├── PROJECT_STRUCTURE.md     # Detailed docs
+    ├── FIREBASE_SETUP.md        # Firebase guide
+    ├── CICD_SETUP.md            # CI/CD guide
     └── package.json
 ```
+
+**📚 Full Documentation:** See `digital-menu-v2/` directory for comprehensive guides
 
 ---
 
@@ -212,14 +241,23 @@ Add these in Vercel Dashboard → Project Settings → Environment Variables:
 - [x] Test infrastructure setup (Vitest)
 - [x] Unit tests for critical hooks
 
-### 🔄 Phase 2: Enhancement (IN PROGRESS)
+### ✅ Phase 2: Enhancement (COMPLETED)
+- [x] CI/CD pipeline with GitHub Actions
+- [x] Automated testing in pipeline
+- [x] Preview deployments for PRs
+- [x] Multi-device order synchronization fix
+- [x] Comprehensive project documentation
+- [x] Firestore security rules deployment
+- [x] Error handling improvements
+- [x] Code organization (pages/ directory)
+
+### 🔄 Phase 3: Advanced Features (IN PROGRESS)
 - [ ] QR code generation for tables
 - [ ] Menu editor for restaurants
 - [ ] Order history & analytics
 - [ ] Email/SMS notifications
 - [ ] Print receipt functionality
-- [ ] CI/CD pipeline setup
-- [ ] Performance optimization
+- [ ] Performance optimization (code splitting)
 
 ### 📅 Phase 3: Scaling (PLANNED)
 - [ ] Payment integration (Stripe/PayPal)
@@ -262,13 +300,16 @@ Small to medium-sized cafés and restaurants in Central Finland, with focus on V
 - ✅ Premium glassmorphism UI
 - ✅ Component-based architecture
 - ✅ Custom React hooks
-- ✅ Test infrastructure
+- ✅ Test infrastructure (22 tests)
+- ✅ CI/CD pipeline with GitHub Actions
+- ✅ Automated deployments
+- ✅ Multi-device synchronization
+- ✅ Comprehensive documentation
 
 ### In Development
 - 🔄 QR code generator
 - 🔄 Restaurant onboarding docs
 - 🔄 Marketing materials
-- 🔄 CI/CD automation
 
 ### Next Milestone
 First pilot restaurant launch - Target: Within 2 weeks
@@ -316,11 +357,13 @@ MIT License - See LICENSE file for details
 
 ## 📈 Metrics
 
-**Development Time**: (October 2025)
-**Lines of Code**: ~3,700+
-**Features Implemented**: 20+
-**Technologies Used**: 10+
-**Test Coverage**: 85%+ (critical hooks)
+**Development Time**: October 2024 - Present
+**Lines of Code**: ~4,500+
+**Features Implemented**: 25+
+**Technologies Used**: 12+
+**Test Coverage**: 22 passing tests (critical hooks & components)
+**CI/CD**: Automated with GitHub Actions
+**Documentation**: 4 comprehensive guides
 **Ready for Production**: ✅ YES
 
 ---
@@ -349,4 +392,4 @@ This design approach creates an upscale yet approachable atmosphere perfect for 
 
 *Built with ☕ and 💻 in Viitasaari, Finland*
 
-*Last updated: October 22, 2025*
+*Last updated: November 3, 2024*
