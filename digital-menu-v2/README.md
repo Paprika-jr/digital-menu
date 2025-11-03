@@ -2,35 +2,52 @@
 
 A modern, real-time digital menu system built with React and Firebase. Customers can browse menus, place orders, and track order status in real-time. Restaurant staff can manage orders through an admin dashboard.
 
+**Live Demo:** https://digital-menu-nine-fawn.vercel.app
+
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-22%20passing-brightgreen)
+![React](https://img.shields.io/badge/React-19-blue)
+![Firebase](https://img.shields.io/badge/Firebase-latest-orange)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 ## Features
 
 ### Customer Features
 - Browse menu with categorized items (Coffee, Food, Desserts)
 - Bilingual support (English/Finnish)
 - Shopping cart with quantity management
-- Real-time order tracking
+- Real-time order tracking with live updates
 - Special offers and daily specials
 - Estimated preparation times
+- Mobile-responsive warm glassmorphism UI
 
 ### Admin Features
-- Real-time order dashboard
+- Real-time order dashboard with auto-refresh
 - Order status management (Received → Preparing → Ready)
-- Order filtering by status
-- Secure authentication
+- Order filtering by status (All, New, Cooking, Ready)
+- Secure authentication with Firebase Auth
+- Clean kitchen-focused interface
+- Multi-device synchronization
 
 ## Tech Stack
 
-- **Frontend**: React 19, React Router
+- **Frontend**: React 19, React Router 6
 - **Backend**: Firebase (Firestore, Authentication)
-- **Build Tool**: Vite
-- **Testing**: Vitest, React Testing Library
-- **Code Quality**: ESLint, Prettier
+- **Build Tool**: Vite 7
+- **Testing**: Vitest 3, React Testing Library
+- **Code Quality**: ESLint 9, Prettier 3
 - **Icons**: Lucide React
+- **Deployment**: Vercel (Auto-deploy via CI/CD)
+- **CI/CD**: GitHub Actions
 
 ## Project Structure
 
 ```
 src/
+├── pages/                  # Top-level page components
+│   ├── App.jsx            # Customer menu page (/)
+│   ├── AdminDashboard.jsx # Admin dashboard (/admin)
+│   └── OrderStatus.jsx    # Order tracking (/status/:id)
 ├── components/
 │   ├── customer/
 │   │   ├── Cart/          # Shopping cart components
@@ -39,19 +56,26 @@ src/
 │   └── admin/
 │       ├── Dashboard/     # Order management
 │       └── Login/         # Admin authentication
-├── hooks/
+├── hooks/                  # Custom React hooks
 │   ├── useCart.js         # Shopping cart logic
-│   ├── useLanguage.js     # Language management
-│   ├── useAuth.js         # Authentication
-│   └── useOrders.js       # Order management
+│   ├── useLanguage.js     # i18n language management
+│   ├── useAuth.js         # Firebase authentication
+│   └── useOrders.js       # Order CRUD + real-time sync
 ├── data/
-│   ├── menuData.json      # Menu items
-│   └── translations.json  # UI translations
+│   ├── menuData.json      # Menu items database
+│   └── translations.json  # UI translations (EN/FI)
 ├── services/
 │   └── firebase.js        # Firebase configuration
-└── test/
-    └── setup.js           # Test configuration
+├── test/
+│   └── setup.js           # Vitest configuration
+└── main.jsx               # App entry point & routing
 ```
+
+**📚 Documentation:**
+- **[FILE_GUIDE.md](FILE_GUIDE.md)** - Quick reference for common tasks
+- **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** - Detailed architecture guide
+- **[FIREBASE_SETUP.md](FIREBASE_SETUP.md)** - Firebase configuration & troubleshooting
+- **[CICD_SETUP.md](CICD_SETUP.md)** - CI/CD pipeline setup instructions
 
 ## Getting Started
 
@@ -151,54 +175,58 @@ Admin access requires Firebase Authentication. Create an admin user in Firebase 
 
 ### Security Rules
 
-Configure Firestore security rules:
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /orders/{orderId} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-  }
-}
-```
+**IMPORTANT:** Deploy Firestore security rules for multi-device order tracking:
+
+1. Via Firebase Console:
+   - Go to Firestore Database → Rules
+   - Copy rules from `firestore.rules`
+   - Click Publish
+
+2. Via Firebase CLI:
+   ```bash
+   firebase deploy --only firestore:rules
+   ```
+
+See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for detailed instructions and troubleshooting.
 
 ## Deployment
 
-### Deploy to Vercel
+This project includes **automated CI/CD** via GitHub Actions:
 
-1. Install Vercel CLI
+### Automatic Deployment (Recommended)
+
+1. Push to `main` branch → Automatically deploys to production
+2. Create Pull Request → Automatically creates preview deployment
+3. All tests, linting, and builds run automatically
+
+**Setup:** See [CICD_SETUP.md](CICD_SETUP.md) for GitHub Actions + Vercel configuration.
+
+### Manual Deployment to Vercel
+
 ```bash
+# Install Vercel CLI
 npm i -g vercel
-```
 
-2. Deploy
-```bash
+# Deploy
 vercel
+
+# Add environment variables in Vercel dashboard
+# Project Settings → Environment Variables
 ```
 
-3. Add environment variables in Vercel dashboard
-- Go to Project Settings → Environment Variables
-- Add all Firebase configuration variables
+### Manual Deployment to Firebase Hosting
 
-### Deploy to Firebase Hosting
-
-1. Install Firebase CLI
 ```bash
+# Install Firebase CLI
 npm i -g firebase-tools
-```
 
-2. Initialize Firebase
-```bash
+# Initialize and deploy
 firebase init hosting
-```
-
-3. Build and deploy
-```bash
 npm run build
 firebase deploy
 ```
+
+**Current Deployment:** https://digital-menu-nine-fawn.vercel.app
 
 ## Customization
 
@@ -218,10 +246,22 @@ Global styles are in `src/index.css`. Components use CSS classes defined there.
 
 - **Component-based architecture** with reusable UI components
 - **Custom hooks** for business logic separation
-- **Real-time updates** via Firebase Firestore listeners
-- **Form validation** with error handling
+- **Real-time updates** via Firebase Firestore listeners (onSnapshot)
+- **Multi-device synchronization** for customer and admin views
+- **Form validation** with comprehensive error handling
 - **localStorage persistence** for cart and language preferences
 - **Environment-based configuration** for secure credential management
+- **Warm glassmorphism UI** with modern design system
+- **Automated CI/CD** with GitHub Actions
+- **Security headers** and performance optimizations via Vercel
+
+## Design System
+
+- **Color Palette:** Warm creams, terracotta, sage/teal
+- **Typography:** Georgia/Playfair Display serif headings
+- **Effects:** Frosted glass (backdrop-filter blur)
+- **Responsive:** Mobile-first design
+- **Accessibility:** Semantic HTML, ARIA labels
 
 ## Browser Support
 
