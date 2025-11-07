@@ -36,6 +36,8 @@ function App() {
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [orderSubmitted, setOrderSubmitted] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const [lastOrderId, setLastOrderId] = useState(() => {
     try {
       return localStorage.getItem('dm_last_order_id') || null;
@@ -47,6 +49,20 @@ function App() {
 
   // Track order status for submitted orders
   const { order: trackedOrder } = useOrderTracking(lastOrderId);
+
+  /**
+   * Handle add to cart with confirmation toast
+   */
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    // Show toast notification
+    setToastMessage(`${item.name[language]} ${t.addedToCart || 'added to cart'}!`);
+    setShowToast(true);
+    // Hide toast after 2 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 2000);
+  };
 
   /**
    * Handle order submission
@@ -134,7 +150,7 @@ function App() {
                 className="btn btn-cart"
                 style={{ background: '#10b981' }}
               >
-                📋 {language === 'en' ? 'View my order' : 'Katso tilaukseni'}
+                 {language === 'en' ? 'View my order' : 'Katso tilaukseni'}
               </button>
             )}
             <button onClick={() => setShowCart(true)} className="btn btn-cart">
@@ -162,7 +178,7 @@ function App() {
           special={menuDataJson.todaySpecial}
           language={language}
           t={t}
-          onAddToCart={addToCart}
+          onAddToCart={handleAddToCart}
         />
 
         {/* Menu Categories */}
@@ -172,7 +188,7 @@ function App() {
             category={category}
             items={items}
             language={language}
-            onAddToCart={addToCart}
+            onAddToCart={handleAddToCart}
             getBadgeText={getBadgeText}
           />
         ))}
@@ -203,6 +219,13 @@ function App() {
           onSubmit={handleSubmitOrder}
           onCancel={() => setShowOrderForm(false)}
         />
+      )}
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="toast-notification">
+          <span>✓ {toastMessage}</span>
+        </div>
       )}
     </div>
   );

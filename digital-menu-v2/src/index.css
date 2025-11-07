@@ -1333,3 +1333,63 @@ body {
   cursor: not-allowed;
   transform: none;
 }
+
+/* ===================================
+   TOAST NOTIFICATION
+=================================== */
+
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+  font-weight: 600;
+  font-size: 0.95rem;
+  z-index: 10000;
+  animation: slideInUp 0.3s ease-out, fadeOut 0.3s ease-in 1.7s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toast-notification span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .toast-notification {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    text-align: center;
+    justify-content: center;
+  }
+}

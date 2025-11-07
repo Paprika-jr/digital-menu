@@ -14,7 +14,7 @@ const translations = {
     estimatedWait: 'Estimated total time',
     minutes: 'min',
     header: 'Café Demo',
-    readyText: 'Your order is ready! 🎉',
+    readyText: 'Your order is ready!',
     backToMenu: 'Back to Menu',
   },
   fi: {
@@ -26,7 +26,7 @@ const translations = {
     estimatedWait: 'Arvioitu kokonaisaika',
     minutes: 'min',
     header: 'Café Demo',
-    readyText: 'Tilauksesi on valmis! 🎉',
+    readyText: 'Tilauksesi on valmis!',
     backToMenu: 'Takaisin menuun',
   }
 };

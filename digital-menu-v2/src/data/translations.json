@@ -29,7 +29,8 @@
     "preparing": "Preparing",
     "ready": "Ready",
     "orderNumber": "Order #",
-    "thankYou": "Thank you for your order!"
+    "thankYou": "Thank you for your order!",
+    "addedToCart": "added to cart"
   },
   "fi": {
     "welcome": "Tervetuloa",
@@ -61,6 +62,7 @@
     "preparing": "Valmisteilla",
     "ready": "Valmis",
     "orderNumber": "Tilaus #",
-    "thankYou": "Kiitos tilauksestasi!"
+    "thankYou": "Kiitos tilauksestasi!",
+    "addedToCart": "lisätty koriin"
   }
 }

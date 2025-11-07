@@ -55,10 +55,16 @@ export function useCart() {
   };
 
   /**
-   * Clear entire cart
+   * Clear entire cart and localStorage immediately
    */
   const clearCart = () => {
     setCart([]);
+    // Immediately clear localStorage to prevent cart from persisting
+    try {
+      localStorage.removeItem('dm_cart');
+    } catch (error) {
+      console.error('Failed to clear cart from localStorage:', error);
+    }
   };
 
   /**
