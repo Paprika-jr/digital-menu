@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 /**
  * Order form modal for customer information
  */
-export function OrderForm({ t, onSubmit, onCancel }) {
+export function OrderForm({ t, onSubmit, onCancel, initialTableNumber = '' }) {
   const [formData, setFormData] = useState({
     name: '',
-    tableNumber: '',
+    tableNumber: initialTableNumber,
     notes: ''
   });
 

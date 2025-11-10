@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import App from './pages/App.jsx'
 import AdminDashboard from './pages/AdminDashboard.jsx'
 import OrderStatus from './pages/OrderStatus.jsx'
+import QRCodeManager from './pages/QRCodeManager.jsx'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './services/firebase'
 import './index.css'
@@ -33,6 +34,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           element={
             <ProtectedRoute>
               <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/qr-codes"
+          element={
+            <ProtectedRoute>
+              <QRCodeManager />
             </ProtectedRoute>
           }
         />

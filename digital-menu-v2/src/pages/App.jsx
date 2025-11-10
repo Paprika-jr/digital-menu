@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ShoppingCart, Globe } from 'lucide-react';
 
 // Import custom hooks
@@ -17,6 +17,7 @@ import { OrderStatusView } from '../components/customer/Order/OrderStatusView';
 
 function App() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   // Custom hooks
   const { language, toggleLanguage, t } = useLanguage();
@@ -39,6 +40,7 @@ function App() {
   const [orderNumber, setOrderNumber] = useState(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [tableNumber, setTableNumber] = useState('');
   const [lastOrderId, setLastOrderId] = useState(() => {
     try {
       return localStorage.getItem('dm_last_order_id') || null;
@@ -47,6 +49,14 @@ function App() {
       return null;
     }
   });
+
+  // Extract table number from URL query parameters
+  useEffect(() => {
+    const tableParam = searchParams.get('table');
+    if (tableParam) {
+      setTableNumber(tableParam);
+    }
+  }, [searchParams]);
 
   // Track order status for submitted orders
   const { order: trackedOrder } = useOrderTracking(lastOrderId);
@@ -226,6 +236,7 @@ function App() {
           t={t}
           onSubmit={handleSubmitOrder}
           onCancel={() => setShowOrderForm(false)}
+          initialTableNumber={tableNumber}
         />
       )}
 

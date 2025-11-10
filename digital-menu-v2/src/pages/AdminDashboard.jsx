@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { LogOut, QrCode } from 'lucide-react';
 
 // Import custom hooks
 import { useAuth, useOrders } from '../hooks';
@@ -10,6 +11,7 @@ import { OrderFilters } from '../components/admin/Dashboard/OrderFilters';
 import { OrderCard } from '../components/admin/Dashboard/OrderCard';
 
 function AdminDashboard() {
+  const navigate = useNavigate();
   const { user, loading: authLoading, error: authError, login, logout } = useAuth();
   const [filter, setFilter] = useState('all');
   const { orders, allOrders, loading: ordersLoading, updateOrderStatus } = useOrders(filter);
@@ -62,10 +64,16 @@ function AdminDashboard() {
           <h1>Kitchen Dashboard</h1>
           <p>Welcome, {user.email}</p>
         </div>
-        <button onClick={handleLogout} className="btn-logout">
-          <LogOut size={20} />
-          Logout
-        </button>
+        <div className="admin-header-actions">
+          <button onClick={() => navigate('/admin/qr-codes')} className="btn-qr-codes">
+            <QrCode size={20} />
+            QR Codes
+          </button>
+          <button onClick={handleLogout} className="btn-logout">
+            <LogOut size={20} />
+            Logout
+          </button>
+        </div>
       </div>
 
       {/* Order Filters */}

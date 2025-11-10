@@ -5,7 +5,7 @@ A modern, real-time digital menu system built with React and Firebase. Customers
 **Live Demo:** https://digital-menu-nine-fawn.vercel.app
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Tests](https://img.shields.io/badge/tests-22%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-29%20passing-brightgreen)
 ![React](https://img.shields.io/badge/React-19-blue)
 ![Firebase](https://img.shields.io/badge/Firebase-latest-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -19,6 +19,8 @@ A modern, real-time digital menu system built with React and Firebase. Customers
 - Real-time price calculation as you customize
 - Shopping cart with quantity management
 - Real-time order tracking with live updates
+- QR code access - Scan table QR code for instant menu access
+- Auto-filled table number from QR code
 - Special offers and daily specials
 - Estimated preparation times
 - Mobile-responsive warm glassmorphism UI
@@ -28,6 +30,8 @@ A modern, real-time digital menu system built with React and Firebase. Customers
 - Order status management (Received → Preparing → Ready)
 - Order filtering by status (All, New, Cooking, Ready)
 - Customization visibility for kitchen preparation
+- QR code generator for tables (configurable 1-100 tables)
+- Print & download QR codes (individual or bulk)
 - Secure authentication with Firebase Auth
 - Clean kitchen-focused interface
 - Multi-device synchronization
@@ -40,6 +44,7 @@ A modern, real-time digital menu system built with React and Firebase. Customers
 - **Testing**: Vitest 3, React Testing Library
 - **Code Quality**: ESLint 9, Prettier 3
 - **Icons**: Lucide React
+- **QR Codes**: qrcode.react
 - **Deployment**: Vercel (Auto-deploy via CI/CD)
 - **CI/CD**: GitHub Actions
 
@@ -250,6 +255,7 @@ Global styles are in `src/index.css`. Components use CSS classes defined there.
 - **Component-based architecture** with reusable UI components
 - **Custom hooks** for business logic separation
 - **Menu customization system** with real-time price calculation and deep comparison
+- **QR code system** with table-specific URLs and auto-fill functionality
 - **Real-time updates** via Firebase Firestore listeners (onSnapshot)
 - **Multi-device synchronization** for customer and admin views
 - **Form validation** with comprehensive error handling

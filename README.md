@@ -36,6 +36,8 @@ A real-time digital menu and ordering system for restaurants where customers can
 - **Order filtering** - View All, New, Cooking, or Ready orders
 - **Customer details** - Name, table number, special requests
 - **Customization visibility** - See all item customizations for kitchen preparation
+- **QR code generation** - Generate unique QR codes for each table
+- **Print & download QR codes** - Individual or bulk printing capabilities
 - **Order totals** - Automatic price calculation
 - **Prep time tracking** - See estimated cooking time
 - **Live sync** - Status updates reflected on customer side instantly
@@ -256,7 +258,7 @@ Add these in Vercel Dashboard → Project Settings → Environment Variables:
 
 ### 🔄 Phase 3: Advanced Features (IN PROGRESS)
 - [x] Menu customization system (sizes, extras, removals, spice levels)
-- [ ] QR code generation for tables
+- [x] QR code generation for tables
 - [ ] Menu editor for restaurants
 - [ ] Order history & analytics
 - [ ] Email/SMS notifications
@@ -304,16 +306,17 @@ Small to medium-sized cafés and restaurants in Central Finland, with focus on V
 - ✅ Premium glassmorphism UI
 - ✅ Component-based architecture
 - ✅ Custom React hooks
-- ✅ Test infrastructure (22 tests)
+- ✅ Test infrastructure (29 tests)
 - ✅ CI/CD pipeline with GitHub Actions
 - ✅ Automated deployments
 - ✅ Multi-device synchronization
 - ✅ Comprehensive documentation
 - ✅ Menu customization system
+- ✅ QR code generation for tables
 
 ### In Development
-- 🔄 QR code generator
-- 🔄 Restaurant onboarding docs
+- 🔄 Menu editor for restaurants
+- 🔄 Order history & analytics
 - 🔄 Marketing materials
 
 ### Next Milestone
@@ -363,13 +366,14 @@ MIT License - See LICENSE file for details
 ## 📈 Metrics
 
 **Development Time**: October 2024 - Present
-**Lines of Code**: ~5,000+
-**Features Implemented**: 30+
-**Technologies Used**: 12+
-**Test Coverage**: 22 passing tests (critical hooks & components)
+**Lines of Code**: ~5,200+
+**Features Implemented**: 32+
+**Technologies Used**: 13+
+**Test Coverage**: 29 passing tests (critical hooks & components)
 **CI/CD**: Automated with GitHub Actions
 **Documentation**: 4 comprehensive guides
 **Customizable Menu Items**: 4 (Latte, Caesar Salad, Burger, Pasta)
+**QR Code Support**: ✅ Configurable table count (1-100 tables)
 **Ready for Production**: ✅ YES
 
 ---
