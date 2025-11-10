@@ -46,8 +46,15 @@ export function OrderCard({ order, onStatusUpdate }) {
         <div className="order-items-title">Items:</div>
         {order.items.map((item, idx) => (
           <div key={idx} className="order-item">
-            <span>{item.quantity}x {item.name}</span>
-            <span>€{(item.price * item.quantity).toFixed(2)}</span>
+            <div className="order-item-main">
+              <span>{item.quantity}x {item.name}</span>
+              <span>€{(item.price * item.quantity).toFixed(2)}</span>
+            </div>
+            {item.customizationsText && item.customizationsText.length > 0 && (
+              <div className="order-item-customizations">
+                {item.customizationsText.join(', ')}
+              </div>
+            )}
           </div>
         ))}
       </div>

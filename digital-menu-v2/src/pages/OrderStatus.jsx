@@ -274,9 +274,16 @@ export default function OrderStatus() {
             <div style={{ marginTop: '1.5rem', borderTop: '1px solid #f0e8dc', paddingTop: '1rem' }}>
               <h4 style={{ color: '#6B4423', marginBottom: '0.5rem' }}>Items</h4>
               {order.items.map((it, i) => (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', color: '#8B6F47', marginBottom: '0.25rem' }}>
-                  <span>{it.quantity}x {it.name}</span>
-                  <span>€{(it.price * it.quantity).toFixed(2)}</span>
+                <div key={i} style={{ marginBottom: '0.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', color: '#8B6F47' }}>
+                    <span>{it.quantity}x {it.name}</span>
+                    <span>€{(it.price * it.quantity).toFixed(2)}</span>
+                  </div>
+                  {it.customizationsText && it.customizationsText.length > 0 && (
+                    <div style={{ fontSize: '0.85rem', color: '#6b9080', fontStyle: 'italic', marginTop: '0.15rem', paddingLeft: '1.5rem' }}>
+                      {it.customizationsText.join(', ')}
+                    </div>
+                  )}
                 </div>
               ))}
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', fontWeight: 700, color: '#6B4423' }}>

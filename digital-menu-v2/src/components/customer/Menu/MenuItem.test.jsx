@@ -13,6 +13,11 @@ describe('MenuItem', () => {
     badge: 'popular'
   };
 
+  const mockTranslations = {
+    addToCart: 'Add to Cart',
+    customize: 'Customize'
+  };
+
   const mockGetBadgeText = (badge) => {
     return badge === 'popular' ? 'Popular' : null;
   };
@@ -26,6 +31,7 @@ describe('MenuItem', () => {
         language="en"
         onAddToCart={mockOnAddToCart}
         getBadgeText={mockGetBadgeText}
+        t={mockTranslations}
       />
     );
 
@@ -45,6 +51,7 @@ describe('MenuItem', () => {
         language="en"
         onAddToCart={mockOnAddToCart}
         getBadgeText={mockGetBadgeText}
+        t={mockTranslations}
       />
     );
 
@@ -60,6 +67,7 @@ describe('MenuItem', () => {
         language="fi"
         onAddToCart={mockOnAddToCart}
         getBadgeText={mockGetBadgeText}
+        t={mockTranslations}
       />
     );
 
@@ -76,6 +84,7 @@ describe('MenuItem', () => {
         language="en"
         onAddToCart={mockOnAddToCart}
         getBadgeText={mockGetBadgeText}
+        t={mockTranslations}
       />
     );
 
@@ -96,6 +105,7 @@ describe('MenuItem', () => {
         language="en"
         onAddToCart={mockOnAddToCart}
         getBadgeText={mockGetBadgeText}
+        t={mockTranslations}
       />
     );
 

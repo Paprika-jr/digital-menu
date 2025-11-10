@@ -5,7 +5,7 @@ import { MenuItem } from './MenuItem';
 /**
  * Menu category section with items grid
  */
-export function MenuCategory({ category, items, language, onAddToCart, getBadgeText }) {
+export function MenuCategory({ category, items, language, onAddToCart, getBadgeText, t }) {
   const categoryIcons = {
     coffee: '☕',
     food: '🍽️',
@@ -51,6 +51,7 @@ export function MenuCategory({ category, items, language, onAddToCart, getBadgeT
             language={language}
             onAddToCart={onAddToCart}
             getBadgeText={getBadgeText}
+            t={t}
           />
         ))}
       </div>

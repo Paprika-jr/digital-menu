@@ -58,7 +58,35 @@
         },
         "price": 4.80,
         "prepTime": 4,
-        "image": "☕"
+        "image": "☕",
+        "customizations": {
+          "sizes": {
+            "type": "single",
+            "required": true,
+            "label": {
+              "en": "Choose Size",
+              "fi": "Valitse Koko"
+            },
+            "options": [
+              { "id": "small", "label": { "en": "Small", "fi": "Pieni" }, "price": -0.50 },
+              { "id": "medium", "label": { "en": "Medium", "fi": "Keskikokoinen" }, "price": 0, "default": true },
+              { "id": "large", "label": { "en": "Large", "fi": "Suuri" }, "price": 1.00 }
+            ]
+          },
+          "extras": {
+            "type": "multiple",
+            "required": false,
+            "label": {
+              "en": "Add Extras",
+              "fi": "Lisää Lisäosat"
+            },
+            "options": [
+              { "id": "extra-shot", "label": { "en": "Extra Espresso Shot", "fi": "Ylimääräinen Espresso" }, "price": 0.80 },
+              { "id": "syrup", "label": { "en": "Flavor Syrup", "fi": "Makusirap pi" }, "price": 0.50 },
+              { "id": "oat-milk", "label": { "en": "Oat Milk", "fi": "Kauramaitoa" }, "price": 0.60 }
+            ]
+          }
+        }
       },
       {
         "id": 4,
@@ -104,7 +132,36 @@
         },
         "price": 11.50,
         "prepTime": 8,
-        "image": "🥗"
+        "image": "🥗",
+        "customizations": {
+          "protein": {
+            "type": "single",
+            "required": false,
+            "label": {
+              "en": "Add Protein",
+              "fi": "Lisää Proteiinia"
+            },
+            "options": [
+              { "id": "none", "label": { "en": "No Protein", "fi": "Ei Proteiinia" }, "price": 0, "default": true },
+              { "id": "chicken", "label": { "en": "Grilled Chicken", "fi": "Grillattu Kana" }, "price": 3.00 },
+              { "id": "salmon", "label": { "en": "Smoked Salmon", "fi": "Savulohi" }, "price": 4.50 },
+              { "id": "shrimp", "label": { "en": "Shrimp", "fi": "Katkarapu" }, "price": 4.00 }
+            ]
+          },
+          "removals": {
+            "type": "multiple",
+            "required": false,
+            "label": {
+              "en": "Customize",
+              "fi": "Mukauta"
+            },
+            "options": [
+              { "id": "no-croutons", "label": { "en": "No Croutons", "fi": "Ei Krutonkeja" }, "price": 0 },
+              { "id": "no-parmesan", "label": { "en": "No Parmesan", "fi": "Ei Parmesania" }, "price": 0 },
+              { "id": "no-dressing", "label": { "en": "Dressing on Side", "fi": "Kastike Erikseen" }, "price": 0 }
+            ]
+          }
+        }
       },
       {
         "id": 7,
@@ -119,7 +176,49 @@
         "price": 14.90,
         "prepTime": 18,
         "image": "🍔",
-        "badge": "bestseller"
+        "badge": "bestseller",
+        "customizations": {
+          "size": {
+            "type": "single",
+            "required": true,
+            "label": {
+              "en": "Choose Size",
+              "fi": "Valitse Koko"
+            },
+            "options": [
+              { "id": "regular", "label": { "en": "Regular", "fi": "Tavallinen" }, "price": 0, "default": true },
+              { "id": "large", "label": { "en": "Large (Double Patty)", "fi": "Iso (Kaksois Pihvi)" }, "price": 3.50 }
+            ]
+          },
+          "extras": {
+            "type": "multiple",
+            "required": false,
+            "label": {
+              "en": "Add Extras",
+              "fi": "Lisää Lisäosat"
+            },
+            "options": [
+              { "id": "extra-cheese", "label": { "en": "Extra Cheese", "fi": "Lisäjuustoa" }, "price": 1.00 },
+              { "id": "bacon", "label": { "en": "Bacon", "fi": "Pekoni" }, "price": 1.50 },
+              { "id": "avocado", "label": { "en": "Avocado", "fi": "Avokado" }, "price": 1.80 },
+              { "id": "fried-egg", "label": { "en": "Fried Egg", "fi": "Paistettu Muna" }, "price": 1.20 }
+            ]
+          },
+          "removals": {
+            "type": "multiple",
+            "required": false,
+            "label": {
+              "en": "Remove Ingredients",
+              "fi": "Poista Ainekset"
+            },
+            "options": [
+              { "id": "no-onions", "label": { "en": "No Onions", "fi": "Ei Sipulia" }, "price": 0 },
+              { "id": "no-pickles", "label": { "en": "No Pickles", "fi": "Ei Kurkkua" }, "price": 0 },
+              { "id": "no-tomato", "label": { "en": "No Tomato", "fi": "Ei Tomaattia" }, "price": 0 },
+              { "id": "no-lettuce", "label": { "en": "No Lettuce", "fi": "Ei Salaattia" }, "price": 0 }
+            ]
+          }
+        }
       },
       {
         "id": 8,
@@ -133,7 +232,48 @@
         },
         "price": 13.50,
         "prepTime": 15,
-        "image": "🍝"
+        "image": "🍝",
+        "customizations": {
+          "size": {
+            "type": "single",
+            "required": true,
+            "label": {
+              "en": "Choose Size",
+              "fi": "Valitse Koko"
+            },
+            "options": [
+              { "id": "small", "label": { "en": "Small", "fi": "Pieni" }, "price": -2.00 },
+              { "id": "regular", "label": { "en": "Regular", "fi": "Tavallinen" }, "price": 0, "default": true },
+              { "id": "large", "label": { "en": "Large", "fi": "Iso" }, "price": 2.50 }
+            ]
+          },
+          "extras": {
+            "type": "multiple",
+            "required": false,
+            "label": {
+              "en": "Add Extras",
+              "fi": "Lisää Lisäosat"
+            },
+            "options": [
+              { "id": "extra-bacon", "label": { "en": "Extra Bacon", "fi": "Lisää Pekonia" }, "price": 2.00 },
+              { "id": "mushrooms", "label": { "en": "Mushrooms", "fi": "Sieniä" }, "price": 1.50 },
+              { "id": "extra-parmesan", "label": { "en": "Extra Parmesan", "fi": "Lisää Parmesania" }, "price": 1.00 }
+            ]
+          },
+          "spiceLevel": {
+            "type": "single",
+            "required": false,
+            "label": {
+              "en": "Spice Level",
+              "fi": "Mausteinen Taso"
+            },
+            "options": [
+              { "id": "mild", "label": { "en": "Mild", "fi": "Mieto" }, "price": 0, "default": true },
+              { "id": "medium", "label": { "en": "Medium", "fi": "Keskivahva" }, "price": 0 },
+              { "id": "hot", "label": { "en": "Hot", "fi": "Tulinen" }, "price": 0 }
+            ]
+          }
+        }
       },
       {
         "id": 9,

@@ -3,11 +3,16 @@ import React from 'react';
 /**
  * Individual cart item row component
  */
-export function CartItem({ item, language, t, onAdd, onRemove }) {
+export function CartItem({ item, language, t, onAdd, onRemove, customizationText }) {
   return (
     <div className="cart-item">
       <div className="cart-item-info">
         <p className="cart-item-name">{item.name[language]}</p>
+        {customizationText && customizationText.length > 0 && (
+          <p className="cart-item-customizations">
+            {customizationText.join(', ')}
+          </p>
+        )}
         <p className="cart-item-time">{item.prepTime} {t.minutes}</p>
         <p className="cart-item-price">€{item.price.toFixed(2)} × {item.quantity}</p>
       </div>

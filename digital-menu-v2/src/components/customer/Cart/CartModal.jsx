@@ -15,7 +15,9 @@ export function CartModal({
   onClose,
   onAddToCart,
   onRemoveFromCart,
-  onPlaceOrder
+  onPlaceOrder,
+  formatCustomizations,
+  menuData
 }) {
   return (
     <div className="modal-overlay bottom">
@@ -33,14 +35,15 @@ export function CartModal({
           ) : (
             <>
               <div className="cart-items">
-                {cart.map(item => (
+                {cart.map((item, index) => (
                   <CartItem
-                    key={item.id}
+                    key={`${item.id}-${index}`}
                     item={item}
                     language={language}
                     t={t}
                     onAdd={onAddToCart}
                     onRemove={onRemoveFromCart}
+                    customizationText={formatCustomizations ? formatCustomizations(item, menuData, language) : []}
                   />
                 ))}
               </div>

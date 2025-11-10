@@ -25,16 +25,41 @@ export function useCart() {
   }, [cart]);
 
   /**
+   * Deep compare two customization objects
+   */
+  const areCustomizationsEqual = (custom1, custom2) => {
+    if (!custom1 && !custom2) return true;
+    if (!custom1 || !custom2) return false;
+    return JSON.stringify(custom1) === JSON.stringify(custom2);
+  };
+
+  /**
    * Add item to cart or increment quantity if already exists
+   * Handles customizations by comparing them deeply
    */
   const addToCart = (item) => {
-    const existingItem = cart.find(i => i.id === item.id);
+    // For customized items, use finalPrice if available
+    const itemPrice = item.finalPrice || item.price;
+
+    // Find existing item with same ID and customizations
+    const existingItem = cart.find(i =>
+      i.id === item.id && areCustomizationsEqual(i.customizations, item.customizations)
+    );
+
     if (existingItem) {
+      // Increment quantity of existing item
       setCart(cart.map(i =>
-        i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        i === existingItem ? { ...i, quantity: i.quantity + 1 } : i
       ));
     } else {
-      setCart([...cart, { ...item, quantity: 1 }]);
+      // Add new item to cart
+      setCart([...cart, {
+        ...item,
+        quantity: 1,
+        price: itemPrice,
+        basePrice: item.price,
+        customizations: item.customizations || null
+      }]);
     }
   };
 
@@ -89,6 +114,41 @@ export function useCart() {
     return Math.max(...cart.map(item => item.prepTime));
   }, [cart]);
 
+  /**
+   * Format customizations for display
+   * Returns array of human-readable customization strings
+   */
+  const formatCustomizations = (item, menuData, language = 'en') => {
+    if (!item.customizations || !menuData) return [];
+
+    const formatted = [];
+    const itemData = menuData.find(i => i.id === item.id);
+    if (!itemData || !itemData.customizations) return [];
+
+    Object.entries(item.customizations).forEach(([categoryKey, selectedValue]) => {
+      const category = itemData.customizations[categoryKey];
+      if (!category) return;
+
+      if (category.type === 'single' && selectedValue) {
+        // Single selection
+        const option = category.options.find(opt => opt.id === selectedValue);
+        if (option && !option.default) {
+          formatted.push(option.label[language]);
+        }
+      } else if (category.type === 'multiple' && Array.isArray(selectedValue) && selectedValue.length > 0) {
+        // Multiple selections
+        selectedValue.forEach(optionId => {
+          const option = category.options.find(opt => opt.id === optionId);
+          if (option) {
+            formatted.push(option.label[language]);
+          }
+        });
+      }
+    });
+
+    return formatted;
+  };
+
   return {
     cart,
     addToCart,
@@ -96,6 +156,7 @@ export function useCart() {
     clearCart,
     getTotalPrice,
     getTotalItems,
-    calculateTotalPrepTime
+    calculateTotalPrepTime,
+    formatCustomizations
   };
 }

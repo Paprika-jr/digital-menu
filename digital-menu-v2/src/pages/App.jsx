@@ -27,7 +27,8 @@ function App() {
     clearCart,
     getTotalPrice,
     getTotalItems,
-    calculateTotalPrepTime
+    calculateTotalPrepTime,
+    formatCustomizations
   } = useCart();
   const { submitOrder } = useOrderSubmit();
 
@@ -68,6 +69,8 @@ function App() {
    * Handle order submission
    */
   const handleSubmitOrder = async (formData) => {
+    const menuData = Object.values(menuDataJson.categories).flat().concat(menuDataJson.todaySpecial ? [menuDataJson.todaySpecial] : []);
+
     const orderData = {
       customerName: formData.name,
       tableNumber: formData.tableNumber,
@@ -77,7 +80,9 @@ function App() {
         name: item.name[language],
         price: item.price,
         quantity: item.quantity,
-        prepTime: item.prepTime
+        prepTime: item.prepTime,
+        customizations: item.customizations || null,
+        customizationsText: formatCustomizations(item, menuData, language)
       })),
       totalPrice: getTotalPrice(),
       estimatedPrepTime: calculateTotalPrepTime,
@@ -190,6 +195,7 @@ function App() {
             language={language}
             onAddToCart={handleAddToCart}
             getBadgeText={getBadgeText}
+            t={t}
           />
         ))}
       </div>
@@ -209,6 +215,8 @@ function App() {
             setShowCart(false);
             setShowOrderForm(true);
           }}
+          formatCustomizations={formatCustomizations}
+          menuData={Object.values(menuDataJson.categories).flat().concat(menuDataJson.todaySpecial ? [menuDataJson.todaySpecial] : [])}
         />
       )}
 
