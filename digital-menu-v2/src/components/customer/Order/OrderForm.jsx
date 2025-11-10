@@ -54,13 +54,25 @@ export function OrderForm({ t, onSubmit, onCancel, initialTableNumber = '' }) {
           </div>
 
           <div>
-            <input
-              type="number"
-              placeholder={t.tableNumber}
-              className={`form-input ${errors.tableNumber ? 'error' : ''}`}
-              value={formData.tableNumber}
-              onChange={(e) => setFormData({ ...formData, tableNumber: e.target.value })}
-            />
+            {initialTableNumber ? (
+              <div className="form-input-with-label">
+                <label className="form-label">{t.tableNumber}</label>
+                <input
+                  type="number"
+                  className={`form-input ${errors.tableNumber ? 'error' : ''}`}
+                  value={formData.tableNumber}
+                  onChange={(e) => setFormData({ ...formData, tableNumber: e.target.value })}
+                />
+              </div>
+            ) : (
+              <input
+                type="number"
+                placeholder={t.tableNumber}
+                className={`form-input ${errors.tableNumber ? 'error' : ''}`}
+                value={formData.tableNumber}
+                onChange={(e) => setFormData({ ...formData, tableNumber: e.target.value })}
+              />
+            )}
             {errors.tableNumber && <p className="error-text">{errors.tableNumber}</p>}
           </div>
 

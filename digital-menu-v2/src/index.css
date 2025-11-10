@@ -921,6 +921,20 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Form Input with Label */
+.form-input-with-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b4423;
+  margin-bottom: 0.25rem;
+}
+
 /* ========================================
    ADMIN DASHBOARD STYLES
    ======================================== */
