@@ -15,6 +15,8 @@ A modern, real-time digital menu system built with React and Firebase. Customers
 ### Customer Features
 - Browse menu with categorized items (Coffee, Food, Desserts)
 - Bilingual support (English/Finnish)
+- Menu customization with sizes, extras, removals, and spice levels
+- Real-time price calculation as you customize
 - Shopping cart with quantity management
 - Real-time order tracking with live updates
 - Special offers and daily specials
@@ -25,6 +27,7 @@ A modern, real-time digital menu system built with React and Firebase. Customers
 - Real-time order dashboard with auto-refresh
 - Order status management (Received → Preparing → Ready)
 - Order filtering by status (All, New, Cooking, Ready)
+- Customization visibility for kitchen preparation
 - Secure authentication with Firebase Auth
 - Clean kitchen-focused interface
 - Multi-device synchronization
@@ -246,6 +249,7 @@ Global styles are in `src/index.css`. Components use CSS classes defined there.
 
 - **Component-based architecture** with reusable UI components
 - **Custom hooks** for business logic separation
+- **Menu customization system** with real-time price calculation and deep comparison
 - **Real-time updates** via Firebase Firestore listeners (onSnapshot)
 - **Multi-device synchronization** for customer and admin views
 - **Form validation** with comprehensive error handling

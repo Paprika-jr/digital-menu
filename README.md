@@ -20,6 +20,8 @@ A real-time digital menu and ordering system for restaurants where customers can
 - **Mobile-responsive digital menu** with modern glassmorphism design
 - **Premium UI/UX** - Warm minimalist aesthetic with frosted glass effects
 - **Bilingual support** - Switch between English & Finnish instantly
+- **Menu customization** - Customize items with sizes, extras, removals, and spice levels
+- **Real-time price calculation** - See final price as you customize
 - **Shopping cart** with quantity management
 - **Real-time preparation time** estimates for each item
 - **Live order tracking** - Watch your order progress (Received → Preparing → Ready)
@@ -33,6 +35,7 @@ A real-time digital menu and ordering system for restaurants where customers can
 - **Order management** - Update status with one click
 - **Order filtering** - View All, New, Cooking, or Ready orders
 - **Customer details** - Name, table number, special requests
+- **Customization visibility** - See all item customizations for kitchen preparation
 - **Order totals** - Automatic price calculation
 - **Prep time tracking** - See estimated cooking time
 - **Live sync** - Status updates reflected on customer side instantly
@@ -252,6 +255,7 @@ Add these in Vercel Dashboard → Project Settings → Environment Variables:
 - [x] Code organization (pages/ directory)
 
 ### 🔄 Phase 3: Advanced Features (IN PROGRESS)
+- [x] Menu customization system (sizes, extras, removals, spice levels)
 - [ ] QR code generation for tables
 - [ ] Menu editor for restaurants
 - [ ] Order history & analytics
@@ -259,7 +263,7 @@ Add these in Vercel Dashboard → Project Settings → Environment Variables:
 - [ ] Print receipt functionality
 - [ ] Performance optimization (code splitting)
 
-### 📅 Phase 3: Scaling (PLANNED)
+### 📅 Phase 4: Scaling (PLANNED)
 - [ ] Payment integration (Stripe/PayPal)
 - [ ] Multi-restaurant support
 - [ ] Kitchen printer integration
@@ -305,6 +309,7 @@ Small to medium-sized cafés and restaurants in Central Finland, with focus on V
 - ✅ Automated deployments
 - ✅ Multi-device synchronization
 - ✅ Comprehensive documentation
+- ✅ Menu customization system
 
 ### In Development
 - 🔄 QR code generator
@@ -358,12 +363,13 @@ MIT License - See LICENSE file for details
 ## 📈 Metrics
 
 **Development Time**: October 2024 - Present
-**Lines of Code**: ~4,500+
-**Features Implemented**: 25+
+**Lines of Code**: ~5,000+
+**Features Implemented**: 30+
 **Technologies Used**: 12+
 **Test Coverage**: 22 passing tests (critical hooks & components)
 **CI/CD**: Automated with GitHub Actions
 **Documentation**: 4 comprehensive guides
+**Customizable Menu Items**: 4 (Latte, Caesar Salad, Burger, Pasta)
 **Ready for Production**: ✅ YES
 
 ---
