@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, QrCode } from 'lucide-react';
+import { LogOut, QrCode, UtensilsCrossed } from 'lucide-react';
 
 // Import custom hooks
 import { useAuth, useOrders } from '../hooks';
@@ -65,6 +65,10 @@ function AdminDashboard() {
           <p>Welcome, {user.email}</p>
         </div>
         <div className="admin-header-actions">
+          <button onClick={() => navigate('/admin/menu')} className="btn-menu-editor">
+            <UtensilsCrossed size={20} />
+            Menu Editor
+          </button>
           <button onClick={() => navigate('/admin/qr-codes')} className="btn-qr-codes">
             <QrCode size={20} />
             QR Codes
