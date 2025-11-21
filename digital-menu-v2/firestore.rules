@@ -19,8 +19,8 @@ service cloud.firestore {
       allow delete: if request.auth != null;
     }
 
-    // Menu items collection (if you add this in the future)
-    match /menu/{itemId} {
+    // Menu items collection - Allow customers to view, admins to manage
+    match /menuItems/{itemId} {
       // Anyone can read menu items
       allow read: if true;
 
@@ -28,7 +28,16 @@ service cloud.firestore {
       allow write: if request.auth != null;
     }
 
-    // Settings or configurations (for future use)
+    // Menu categories collection - Allow customers to view, admins to manage
+    match /menuCategories/{categoryId} {
+      // Anyone can read categories
+      allow read: if true;
+
+      // Only authenticated admins can write categories
+      allow write: if request.auth != null;
+    }
+
+    // Settings or configurations (today's special, etc.)
     match /settings/{settingId} {
       // Anyone can read settings
       allow read: if true;
